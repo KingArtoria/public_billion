@@ -135,3 +135,51 @@ export const aliCommit = data => {
     data
   })
 }
+// ? 提现
+export const draw = data => {
+  return request({
+    url: "/Assets/draw",
+    method: "POST",
+    data
+  })
+}
+// ? 我的任务
+export const userJob = data => {
+  return request({
+    url: "/Member/user_job",
+    method: "POST",
+    data
+  })
+}
+// ? 任务提交
+export const commitJob = data => {
+  return request({
+    url: "/Member/commit_job",
+    method: "POST",
+    data
+  })
+}
+// ? 我的团队
+export const team = data => {
+  return request({
+    url: "/Member/team",
+    method: "POST",
+    data
+  })
+}
+// ? 实名认证
+export const auth = data => {
+  return request({
+    url: "/Member/auth",
+    method: "POST",
+    data
+  })
+}
+// ? 问题反馈
+export const problem = data => {
+  return request({
+    url: "/Member/problem",
+    method: "POST",
+    data
+  })
+}

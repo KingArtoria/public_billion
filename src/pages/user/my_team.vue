@@ -10,7 +10,7 @@
         </view>
         <view class="content_1_1">
           <view class="content_1_1_1">24</view>
-          <view class="content_1_1_2">直推人数</view>
+          <view class="content_1_1_2">团队人数</view>
         </view>
       </view>
       <view class="content_2">
@@ -48,7 +48,25 @@
 
 <script>
 import Head from '../../components/Head.vue'
+import { team } from '../../utils/api'
 export default {
+  data() {
+    return {
+      teamList: [],
+      teamNum: ""
+    }
+  },
+  methods: {
+    team() {
+      team().then(res => {
+        this.teamList = res.data.list
+        this.teamNum = res.data.team_num
+      })
+    },
+  },
+  onLoad() {
+    this.team()
+  },
   components: { Head }
 }
 </script>

@@ -96,6 +96,7 @@
     .content_2_1 {
       text-align: center;
       flex: 1;
+      position: relative;
       .content_2_1_1 {
         width: 43rpx;
         height: 43rpx;
@@ -107,6 +108,20 @@
         font-weight: 500;
         color: #000000;
         line-height: 1;
+      }
+      .content_2_1_3 {
+        position: absolute;
+        height: 26rpx;
+        background: #fd463e;
+        border-radius: 13rpx;
+        font-size: 20rpx;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 26rpx;
+        padding: 0 12rpx;
+        top: -21rpx;
+        right: 18rpx;
       }
     }
   }
@@ -148,4 +163,3 @@
     }
   }
 }
-

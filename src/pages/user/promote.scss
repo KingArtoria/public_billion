@@ -1,39 +1,7 @@
-.head {
-  height: 195rpx;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 26rpx;
-  padding-top: 120rpx;
-  box-sizing: border-box;
-  .head_1,
-  .head_2,
-  .head_3 {
-    flex: 1;
-    .head_1_1 {
-      width: 16rpx;
-      height: 28rpx;
-    }
-  }
-  .head_2 {
-    font-size: 34rpx;
-    font-family: PingFang SC;
-    font-weight: bold;
-    color: #000000;
-    text-align: center;
-  }
-  .head_3 {
-    font-size: 30rpx;
-    font-family: PingFang SC;
-    font-weight: 500;
-    color: #515151;
-    text-align: end;
-  }
-}
 .content {
   background: #fe7620;
   padding-bottom: 88rpx;
+  padding-top: 195rpx;
   .content_1 {
     background: url('../../static/yqhy-tuig.webp') no-repeat;
     background-size: 100%;

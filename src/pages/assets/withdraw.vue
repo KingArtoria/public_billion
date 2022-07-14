@@ -35,19 +35,19 @@
           <view class="content_3_1_1" />
           <view class="content_3_1_2">提现金额</view>
         </view>
-        <u--input placeholder="请输入内容" border="none" fontSize="26rpx" />
+        <u--input placeholder="请输入提现金额" border="none" fontSize="26rpx" v-model="drawParams.account" type="number" />
       </view>
       <view class="content_4">
         <view class="content_4_1">
           <view class="content_4_1_1" />
-          <view class="content_4_1_2">提现金额</view>
+          <view class="content_4_1_2">提现说明</view>
         </view>
         <view class="content_4_2">1、提现金额次日到账。</view>
         <view class="content_4_2">2、提现说明文案这是一段文字，等后面写。</view>
       </view>
     </view>
     <view class="btn">
-      <view class="btn_1">立即体现</view>
+      <view class="btn_1" @click="draw">立即体现</view>
     </view>
     <u-modal :show="!isZFB && !isWX" title="提示" content='请先去绑定提现支付宝账户或微信账户' showCancelButton @confirm="confirm"
       @close="cancel_close" @cancel="cancel_close" />
@@ -56,16 +56,17 @@
 
 <script>
 import Head from '../../components/Head.vue'
-import { memberIndex } from '../../utils/api'
+import { draw, memberIndex } from '../../utils/api'
 export default {
   data() {
     return {
       price: 0,
       userInfo: {},
-      isZFB: false,
-      isWX: false,
+      isZFB: true,
+      isWX: true,
       text: "",
-      selectPayData: [false, false],
+      selectPayData: [true, false],
+      drawParams: {},
     }
   },
   methods: {
@@ -74,7 +75,9 @@ export default {
         if (res.code == -1) return this.$u.toast(res.msg)
         this.userInfo = res.data.member
         if (this.userInfo.ali_number != '') this.isZFB = true
+        else this.isZFB = false
         if (this.userInfo.wx_number != '') this.isWX = true
+        else this.isWX = false
         if (this.isZFB) {
           this.text = "支付宝账号"
         } else if (this.isWX) {
@@ -89,6 +92,14 @@ export default {
     },
     cancel_close() {
       uni.navigateBack();
+    },
+    draw() {
+      this.drawParams.type = this.selectPayData[0] ? 2 : 3
+      draw(this.drawParams).then(res => {
+        if (res.code == -1) return this.$u.toast(res.msg)
+        this.$u.toast('提现成功,金额24小时内到账')
+        this.price -= this.drawParams.account
+      })
     },
   },
   onLoad(option) {

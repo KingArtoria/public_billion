@@ -24,7 +24,8 @@
     { "path": "pages/user/promote", "style": { "navigationStyle": "custom" } },
     { "path": "pages/login/forget_password", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/edit_info", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/bind_account", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/bind_account", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/submit", "style": { "navigationStyle": "custom" } }
   ],
   "tabBar": {
     "color": "#B0ADAD",

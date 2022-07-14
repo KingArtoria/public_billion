@@ -10,16 +10,16 @@
       <view class="content_2">
         <view class="content_2_1">真实姓名</view>
         <view class="content_2_2">
-          <u--input placeholder="请输入您本人的真实姓名" border="none" fontSize="30rpx" />
+          <u--input placeholder="请输入您本人的真实姓名" border="none" fontSize="30rpx" v-model="authParams.name" />
         </view>
       </view>
       <view class="content_2">
         <view class="content_2_1">身份证号</view>
         <view class="content_2_2">
-          <u--input placeholder="请输入您本人的身份证号码" border="none" fontSize="30rpx" />
+          <u--input placeholder="请输入您本人的身份证号码" border="none" fontSize="30rpx" v-model="authParams.card" />
         </view>
       </view>
-      <view class="content_3">提交</view>
+      <view class="content_3" @click="auth">提交</view>
       <view class="content_4">实名认证服务由阿里云提供</view>
     </view>
   </view>
@@ -27,7 +27,23 @@
 
 <script>
 import Head from '../../components/Head.vue'
+import { auth } from '../../utils/api'
 export default {
+  data() {
+    return {
+      authParams: {},
+    }
+  },
+  methods: {
+    auth() {
+      auth(this.authParams).then(res => {
+        if (res.code == -1) return this.$u.toast(res.msg)
+        uni.navigateTo({
+          url: `/pages/user/verified_ok?name=${this.authParams.name}&card=${this.authParams.card}`
+        });
+      })
+    },
+  },
   components: { Head }
 }
 </script>
