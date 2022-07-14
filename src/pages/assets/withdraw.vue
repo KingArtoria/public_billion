@@ -9,24 +9,26 @@
         <view class="content_1_3">{{ price }}</view>
       </view>
       <view class="content_2">
-        <view class="content_2_1" v-show="isZFB">
+        <view class="content_2_1">
           <view class="content_2_1_1" />
           <view class="content_2_1_2">提现方式</view>
         </view>
-        <view class="content_2_2" v-show="isWX">
-          <view class="content_2_2_1">
+        <view class="content_2_2">
+          <view :class="selectPayData[0] ? 'content_2_2_2' : 'content_2_2_1'" v-show="isZFB"
+            @click="selectPayData = [true, false]">
             <image class="content_2_2_1_1" src="../../static/zhidfubao.webp" />
             <view class="content_2_2_1_2">支付宝</view>
           </view>
-          <view class="content_2_2_1">
+          <view :class="selectPayData[1] ? 'content_2_2_2' : 'content_2_2_1'" v-show="isWX"
+            @click="selectPayData = [false, true]">
             <image class="content_2_2_1_1" src="../../static/weixin.webp" />
             <view class="content_2_2_1_2">微信</view>
           </view>
         </view>
-        <view class="content_2_3" v-show="isZFB || isWX">
+        <!-- <view class="content_2_3" v-show="isZFB || isWX">
           <view class="content_2_3_1">{{ text }}：13645225773</view>
           <view class="content_2_3_2">修改</view>
-        </view>
+        </view> -->
       </view>
       <view class="content_3">
         <view class="content_3_1">
@@ -62,7 +64,8 @@ export default {
       userInfo: {},
       isZFB: false,
       isWX: false,
-      text: ""
+      text: "",
+      selectPayData: [false, false],
     }
   },
   methods: {

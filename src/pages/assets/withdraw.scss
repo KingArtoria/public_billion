@@ -66,6 +66,30 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.3s;
+        .content_2_2_1_1 {
+          width: 39rpx;
+          height: 35rpx;
+          margin-right: 22rpx;
+        }
+        .content_2_2_1_2 {
+          font-size: 30rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #000000;
+          line-height: 1;
+        }
+      }
+      .content_2_2_2 {
+        width: 330rpx;
+        height: 100rpx;
+        background: #fff0ee;
+        border: 2rpx solid #ff644d;
+        border-radius: 10rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
         .content_2_2_1_1 {
           width: 39rpx;
           height: 35rpx;
