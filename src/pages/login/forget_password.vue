@@ -3,12 +3,12 @@
 
     <Head />
     <view class="content">
-      <view class="content_1">注册</view>
+      <view class="content_1">找回密码</view>
       <view class="content_2">
-        <u--input placeholder="请输入手机号" border="none" v-model="registerParams.phone" />
+        <u--input placeholder="请输入手机号" border="none" v-model="forgetPassParams.phone" />
       </view>
       <view class="content_2">
-        <u--input placeholder="请输入验证码" border="none" v-model="registerParams.code">
+        <u--input placeholder="请输入验证码" border="none" v-model="forgetPassParams.code">
           <template slot="suffix">
             <u-code ref="uCode" @change="codeChange" changeText="X秒重新获取" />
             <u-button @tap="getCode" :text="tips" type="primary" shape="circle" plain color="#FF644D" size="mini"
@@ -17,47 +17,36 @@
         </u--input>
       </view>
       <view class="content_2">
-        <u--input placeholder="请输入密码" border="none" type="password" v-model="registerParams.password" />
+        <u--input placeholder="请输入密码" border="none" type="password" v-model="forgetPassParams.password" />
       </view>
       <view class="content_2">
-        <u--input placeholder="请再次输入密码" border="none" type="password" v-model="registerParams.verifyPassword" />
+        <u--input placeholder="请再次输入密码" border="none" type="password" v-model="forgetPassParams.passagain" />
       </view>
-      <view class="content_2">
-        <u--input placeholder="请输入邀请码(必填)" border="none" v-model="registerParams.uuid" />
-      </view>
-      <view class="content_3" @click="register">注册</view>
+      <view class="content_3" @click="forgetPass">确定</view>
     </view>
   </view>
 </template>
 
 <script>
 import Head from '../../components/Head.vue'
-import { register, sms } from '../../utils/api'
+import { sms, forgetPass } from '../../utils/api'
 export default {
   data() {
     return {
       tips: "获取验证码",
-      registerParams: {},
+      forgetPassParams: {},
       smsParams: {},
     }
   },
   methods: {
-    register() {
-      if (this.registerParams.password != this.registerParams.verifyPassword)
-        return this.$u.toast('两次密码不一致')
-      register(this.registerParams).then(res => {
-        if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('注册成功')
-      })
-    },
     codeChange(text) {
       this.tips = text;
     },
     getCode() {
       if (this.$refs.uCode.canGetCode) {
         uni.showLoading({ title: '正在获取验证码' })
-        this.smsParams.mobile = this.registerParams.phone;
-        this.smsParams.type = 'register'
+        this.smsParams.mobile = this.forgetPassParams.phone;
+        this.smsParams.type = 'forget_pass'
         sms(this.smsParams).then(res => {
           if (res.code == -1) return this.$u.toast(res.msg)
           uni.hideLoading();
@@ -67,6 +56,12 @@ export default {
       } else {
         uni.$u.toast('倒计时结束后再发送');
       }
+    },
+    forgetPass() {
+      forgetPass(this.forgetPassParams).then(res => {
+        if (res.code == -1) return this.$u.toast(res.msg)
+        uni.$u.toast('修改成功');
+      })
     },
   },
   components: { Head }

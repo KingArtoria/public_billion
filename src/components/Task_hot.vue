@@ -1,27 +1,26 @@
 <template>
-  <div class="taskDay">
+  <div class="taskDay" @click="goInfo(item)">
     <div class="taskHot_1">
       <div class="taskHot_1_1">
-        <image class="taskHot_1_1_1" :src="item.logo" />
+        <image class="taskHot_1_1_1" :src="item.cooperate" v-if="item.cooperate != null" />
         <div class="taskHot_1_1_2">
-          <div class="taskHot_1_1_2_1">{{ item.title }}</div>
+          <div class="taskHot_1_1_2_1">{{ item.name }}</div>
           <div class="taskHot_1_1_2_2">
-            <div class="taskHot_1_1_2_2_1" v-for="(item2, index) in item.tag" :key="index"
-              :style="item.tag.length > 1 && index == 0 ? 'margin-right:0.416rem' : ''">{{ item2 }}</div>
+            <div class="taskHot_1_1_2_2_1">{{ item.category }}</div>
           </div>
         </div>
       </div>
       <image class="taskHot_1_2" src="../static/hot.webp" />
     </div>
-    <div class="taskHot_2">￥{{ item.price }}</div>
+    <div class="taskHot_2">￥{{ item.award_number }}</div>
     <div class="taskHot_3">
       <div class="taskHot_3_1">
         <image class="taskHot_3_1_1" src="../static/ren.webp" />
-        <div class="taskHot_3_1_2">{{ item.info[0] }}人已赚</div>
+        <div class="taskHot_3_1_2">{{ item.number - item.stock_number }}人已赚</div>
       </div>
       <div class="taskHot_3_1">
         <image class="taskHot_3_1_1" src="../static/qiandai.webp" />
-        <div class="taskHot_3_1_2">剩余{{ item.info[1] }}个</div>
+        <div class="taskHot_3_1_2">剩余{{ item.stock_number }}个</div>
       </div>
     </div>
   </div>
@@ -31,7 +30,15 @@
 export default {
   props: {
     item: { type: Object, default: [] }
-  }
+  },
+  methods: {
+    goInfo(item) {
+      uni.setStorageSync('item', item)
+      uni.navigateTo({
+        url: `/pages/index/info`
+      });
+    },
+  },
 }
 </script>
 

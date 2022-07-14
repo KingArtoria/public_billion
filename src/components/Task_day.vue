@@ -1,25 +1,24 @@
 <template>
-  <view class="taskDay">
+  <view class="taskDay" @click="goInfo(item)">
     <view class="taskDay_1">
-      <image class="taskDay_1_1" :src="item.logo" />
+      <image class="taskDay_1_1" :src="item.cooperate" v-if="item.cooperate != null" />
       <view class="taskDay_1_2">
-        <view class="taskDay_2_1">{{ item.title }}</view>
+        <view class="taskDay_2_1">{{ item.name }}</view>
         <view class="taskDay_2_2">
-          <view class="taskDay_2_2_1" v-for="(item2, index) in item.tag" :key="index"
-            :style="item.tag.length > 1 && index == 0 ? 'margin-right:13rpx' : ''">{{ item2 }}</view>
+          <view class="taskDay_2_2_1">{{ item.category }}</view>
         </view>
       </view>
     </view>
     <view class="taskDay_2">
-      <view class="taskDay_2_1">￥{{ item.price }}</view>
+      <view class="taskDay_2_1">￥{{ item.award_number }}</view>
       <view class="taskDay_2_2">
         <view class="taskDay_2_2_1" style="margin-right:29rpx">
           <image class="taskDay_2_2_1_1" src="../static/ren.webp" />
-          <view class="taskDay_2_2_1_2">{{ item.info[0] }}人已赚</view>
+          <view class="taskDay_2_2_1_2">{{ item.number - item.stock_number }}人已赚</view>
         </view>
         <view class="taskDay_2_2_1">
           <image class="taskDay_2_2_1_1" src="../static/qiandai.webp" />
-          <view class="taskDay_2_2_1_2">剩余{{ item.info[0] }}个</view>
+          <view class="taskDay_2_2_1_2">剩余{{ item.stock_number }}个</view>
         </view>
       </view>
     </view>
@@ -30,7 +29,15 @@
 export default {
   props: {
     item: { type: Object, default: [] }
-  }
+  },
+  methods: {
+    goInfo(item) {
+      uni.setStorageSync('item', item)
+      uni.navigateTo({
+        url: `/pages/index/info`
+      });
+    },
+  },
 }
 </script>
 

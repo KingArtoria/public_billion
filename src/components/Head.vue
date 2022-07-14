@@ -1,7 +1,7 @@
 <template>
   <view class="head">
     <view class="head_1">
-      <image class="head_1_1" src="../static/fanhui2.webp" />
+      <image class="head_1_1" src="../static/fanhui2.webp" @click="goBack" />
     </view>
     <view class="head_2">{{ title }}</view>
     <view class="head_3" />
@@ -12,6 +12,11 @@
 export default {
   props: {
     title: { type: String, default: '' },
+  },
+  methods: {
+    goBack() {
+      uni.navigateBack()
+    },
   },
 }
 </script>

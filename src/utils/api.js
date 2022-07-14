@@ -1,0 +1,137 @@
+import request from './request'
+// ? 注册
+export const register = data => {
+  return request({
+    url: "/login/register",
+    method: "POST",
+    data
+  })
+}
+// ? 获取验证码
+export const sms = data => {
+  return request({
+    url: "/AlibabaSms/sms",
+    method: "POST",
+    data
+  })
+}
+// ? 密码登录
+export const login = data => {
+  return request({
+    url: "/login/login",
+    method: "POST",
+    data
+  })
+}
+// ? 短信登录
+export const SmsLogin = data => {
+  return request({
+    url: "/login/SmsLogin",
+    method: "POST",
+    data
+  })
+}
+// ? 忘记密码
+export const forgetPass = data => {
+  return request({
+    url: "/login/forget_pass",
+    method: "POST",
+    data
+  })
+}
+// ? banner列表
+export const bannerList = data => {
+  return request({
+    url: "/Index/bannerList",
+    method: "POST",
+    data
+  })
+}
+// ? 热门列表
+export const hotList = data => {
+  return request({
+    url: "/Index/hotList",
+    method: "POST",
+    data
+  })
+}
+// ? 日常任务
+export const list = data => {
+  return request({
+    url: "/Index/list",
+    method: "POST",
+    data
+  })
+}
+// ? 领取任务
+export const applyJob = data => {
+  return request({
+    url: "/Cooperate/applyJob",
+    method: "POST",
+    data
+  })
+}
+// ? 列表
+export const cooperateList = data => {
+  return request({
+    url: "/Cooperate/list",
+    method: "POST",
+    data
+  })
+}
+// ? 分类列表
+export const typeList = data => {
+  return request({
+    url: "/Cooperate/typeList",
+    method: "POST",
+    data
+  })
+}
+// ? 资产
+export const assetsIndex = data => {
+  return request({
+    url: "/Assets/index",
+    method: "POST",
+    data
+  })
+}
+// ? 兑换
+export const convert = data => {
+  return request({
+    url: "/member/convert",
+    method: "POST",
+    data
+  })
+}
+// ? 个人中心
+export const memberIndex = data => {
+  return request({
+    url: "/Member/index",
+    method: "POST",
+    data
+  })
+}
+// ? 修改信息
+export const editMember = data => {
+  return request({
+    url: "/member/edit_member",
+    method: "POST",
+    data
+  })
+}
+// ? 绑定微信提现
+export const wxCommit = data => {
+  return request({
+    url: "/member/wxCommit",
+    method: "POST",
+    data
+  })
+}
+// ? 绑定支付宝提现
+export const aliCommit = data => {
+  return request({
+    url: "/member/aliCommit",
+    method: "POST",
+    data
+  })
+}

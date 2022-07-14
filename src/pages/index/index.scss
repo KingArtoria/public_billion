@@ -22,13 +22,13 @@
         border: 2rpx solid #ff644d;
         border-radius: 35rpx;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         padding: 0 22rpx;
         box-sizing: border-box;
         .content_1_1_2_1 {
           width: 31rpx;
           height: 31rpx;
+          margin-right: 22rpx;
         }
         .content_1_1_2_2 {
           font-size: 26rpx;
@@ -116,6 +116,7 @@
     .content_3_2 {
       display: flex;
       justify-content: space-around;
+      flex-wrap: wrap;
     }
   }
   .content_4 {

@@ -7,7 +7,26 @@
     font-weight: 800;
     color: #000000;
     line-height: 1;
+    margin-bottom: calc(180rpx - 122rpx);
   }
   .content_2 {
+    height: 122rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 1rpx solid #f5f5f6;
+  }
+  .content_3 {
+    width: 610rpx;
+    height: 100rpx;
+    background: #ff644d;
+    border-radius: 50rpx;
+    margin: 0 auto;
+    margin-top: 80rpx;
+    font-size: 30rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 100rpx;
+    text-align: center;
   }
 }

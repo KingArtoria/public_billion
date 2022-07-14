@@ -120,42 +120,11 @@
       }
     }
     .content_3_2 {
+      margin: 0 auto;
+      padding-bottom: 30rpx;
       margin-bottom: 30rpx;
-      .content_3_2_1 {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 30rpx;
-        .content_3_2_1_1 {
-          width: 30rpx;
-          height: 30rpx;
-          background: #ff644d;
-          border-radius: 50%;
-          text-align: center;
-          line-height: 30rpx;
-          font-size: 24rpx;
-          font-family: PingFang SC;
-          font-weight: 500;
-          color: #ffffff;
-          margin-top: 5rpx;
-        }
-        .content_3_2_1_2 {
-          width: 660rpx;
-          font-size: 24rpx;
-          font-family: PingFang SC;
-          font-weight: 500;
-          color: #1a1a1a;
-          line-height: 41rpx;
-        }
-      }
-      .content_3_2_2 {
-        display: flex;
-        justify-content: space-between;
-        .content_3_2_2_1 {
-          width: 339rpx;
-          height: 747rpx;
-          background: #ff644d;
-        }
-      }
+      width: 700rpx;
+      text-align: center;
     }
   }
   .content_4 {

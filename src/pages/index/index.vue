@@ -9,13 +9,13 @@
 				</view>
 				<image class="content_1_1_3" src="../../static/xiaoxi.webp" />
 			</view>
-			<image class="content_1_2" src="../../static/banner_1.webp" />
+			<image class="content_1_2" :src="banner" v-if="banner" />
 		</view>
 		<view class="content_2">
-			<image class="content_2_1" src="../../static/ruzhuhuiyuan.webp" />
+			<image class="content_2_1" src="../../static/ruzhuhuiyuan.webp" @click="goVip" />
 			<view class="content_2_2">
-				<image class="content_2_2_1" src="../../static/renwudati.webp" />
-				<image class="content_2_2_1" src="../../static/yaoqingyoul.webp" />
+				<image class="content_2_2_1" src="../../static/renwudati.webp" @click="goHall" />
+				<image class="content_2_2_1" src="../../static/yaoqingyoul.webp" @click="goPromote" />
 			</view>
 		</view>
 		<view class="content_3">
@@ -25,12 +25,12 @@
 					<view class="content_3_1_1_2">今日最热</view>
 				</view>
 				<view class="content_3_1_2">
-					<view class="content_3_1_2_1">查看更多</view>
+					<view class="content_3_1_2_1" @click="goHall">查看更多</view>
 					<image class="content_3_1_2_2" src="../../static/fanhui.webp" />
 				</view>
 			</view>
 			<view class="content_3_2">
-				<TaskHot v-for="(item, index) in hotList" :key="index" :item="item" />
+				<TaskHot v-for="(item, index) in hotListData" :key="index" :item="item" />
 			</view>
 		</view>
 		<view class="content_4">
@@ -40,7 +40,7 @@
 					<view class="content_4_1_1_2">日常任务</view>
 				</view>
 				<view class="content_4_1_2">
-					<view class="content_4_1_2_1">查看更多</view>
+					<view class="content_4_1_2_1" @click="goHall">查看更多</view>
 					<image class="content_4_1_2_2" src="../../static/fanhui.webp" />
 				</view>
 			</view>
@@ -54,21 +54,66 @@
 <script>
 import TaskHot from '../../components/Task_hot.vue'
 import TaskDay from '../../components/Task_day.vue'
+import { bannerList, hotList, list } from '../../utils/api'
 export default {
 	data() {
 		return {
-			hotList: [
-				{ logo: "https://p3-passport.byteacctimg.com/img/user-avatar/bbb8b4e2c83c8f1f1a3706cd243deee0~300x300.image", title: "团油", tag: ['开卡', '邮寄到家'], price: "5.00", info: [3215, 119] },
-				{ logo: "https://p3-passport.byteacctimg.com/img/user-avatar/bbb8b4e2c83c8f1f1a3706cd243deee0~300x300.image", title: "腾讯大王卡", tag: ['信用卡开卡'], price: "30.33", info: [3215, 119] }
-			],
-			dayList: [
-				{ logo: "https://p3-passport.byteacctimg.com/img/user-avatar/bbb8b4e2c83c8f1f1a3706cd243deee0~300x300.image", title: "团油", tag: ['开卡', '邮寄到家'], price: "5.00", info: [3215, 119] },
-				{ logo: "https://p3-passport.byteacctimg.com/img/user-avatar/bbb8b4e2c83c8f1f1a3706cd243deee0~300x300.image", title: "腾讯大王卡", tag: ['信用卡开卡'], price: "30.33", info: [3215, 119] }
-			],
+			hotListData: [],
+			dayList: [],
+			banner: "",
+			hotListParams: { page: 1, num: 4 },
+			listParams: { page: 1, num: 10 },
 		}
 	},
 	onLoad() { },
-	methods: {},
+	methods: {
+		bannerList() {
+			bannerList().then(res => {
+				this.banner = `http://zxyj.xzxiaocaihua.cn${res.data[0].image}`
+			})
+		},
+		hotList() {
+			hotList(this.hotListParams).then(res => {
+				res.data.forEach(item => {
+					item.cooperate = item.cooperate == null ? null : `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+				});
+				this.hotListData = res.data
+			})
+		},
+		list() {
+			list(this.listParams).then(res => {
+				if (res.code == -1) return this.$u.toast(res.msg)
+				res.data.forEach(item => {
+					item.cooperate = item.cooperate == null ? null : `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+					this.dayList.push(item)
+				});
+			})
+		},
+		goVip() {
+			uni.navigateTo({
+				url: '/pages/user/vip'
+			});
+		},
+		goHall() {
+			uni.switchTab({
+				url: '/pages/hall/index'
+			});
+		},
+		goPromote() {
+			uni.navigateTo({
+				url: '/pages/user/promote'
+			});
+		},
+	},
+	onLoad() {
+		this.bannerList()
+		this.hotList()
+		this.list()
+	},
+	onReachBottom() {
+		this.listParams.page += 1
+		this.list()
+	},
 	components: { TaskHot, TaskDay }
 }
 </script>
