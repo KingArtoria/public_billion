@@ -51,7 +51,13 @@
 			/* ios打包配置 */
 			"sdkConfigs": {
 				"ad": {},
-				"payment": {}
+				"payment": {
+					"weixin": {
+						"__platform__": ["ios", "android"],
+						"appid": "wx0251b19f1e1d9011",
+						"UniversalLinks": ""
+					}
+				}
 			}
 		}
 	},

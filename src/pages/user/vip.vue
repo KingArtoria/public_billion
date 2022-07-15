@@ -36,6 +36,7 @@
 		<view class="btn">
 			<view class="btn_1" @click="submit">立即开通</view>
 		</view>
+		<u-modal :show="show" content='您已成功开通钻石会员' @confirm="back"></u-modal>
 	</view>
 </template>
 
@@ -44,16 +45,44 @@
 		wxpay
 	} from '../../utils/api.js'
 	export default {
-		methods: {
-			submit() {
-				wxpay().then(res => {
-
-				})
+		data() {
+			return {
+				show: false
 			}
+		},
+		methods: {
+			async submit() {
+				uni.showLoading({
+					title: '正在为您开通'
+				})
+				const orderInfo = await wxpay()
+				uni.requestPayment({
+					provider: 'wxpay',
+					orderInfo,
+					success(res) {
+						uni.hideLoading()
+						this.show = true
+					},
+					fail(err) {
+						console.log(err)
+						uni.hideLoading()
+						if (err.code == -8) {
+							uni.$u.toast('请先安装微信');
+						}
+					}
+				})
+			},
+			back() {
+				uni.navigateBack()
+			},
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
 	@import './vip.scss';
+
+	/deep/ .u-modal__content__text {
+		text-align: center;
+	}
 </style>
