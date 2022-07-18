@@ -50,7 +50,7 @@
               <image class="content_3_3_2_1" v-for="(item2, index2) in item.img" :key="index2" :src="item2"
                 mode="widthFix" />
               <u-upload :fileList="fileList[`fileList${index + 1}`]" @afterRead="afterRead" @delete="deletePic"
-                :name="index + 1" :maxCount="1" width="348rpx" height="747rpx">
+                :name="'' + (index + 1)" :maxCount="1" width="348rpx" height="747rpx">
                 <view class="content_3_3_2_2">
                   <view class="content_3_3_2_2_1">
                     <image class="content_3_3_2_2_2" src="../../static/xiangji.png" />
@@ -62,11 +62,22 @@
           </view>
         </view>
       </view>
+      <view v-if="type != 'old'" class="content_3 common">
+        <view class="content_3_1">
+          <view class="content_3_1_1" />
+          <view class="content_3_1_2">做单公码</view>
+        </view>
+        <image :src="item.share_url" class="common-img"></image>
+        <text class="common-text">
+          注：因抖音口令规则改变口令有可能短暂失效，个别用户不自动跳转到
+          任务的，复制口令到抖音搜索栏搜索。
+        </text>
+      </view>
       <view class="content_4" v-if="type == 'old'">
         <view class="content_4_1" style="font-size:20rpx">提交数据</view>
         <u--input placeholder="选填,请输入凭证" border="surround" v-model="commitJobParams.voucher" fontSize="20rpx" />
-        <u-upload :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple :maxCount="9"
-          style="margin-top:20rpx" />
+        <u-upload :fileList="fileList.fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
+          :maxCount="9" style="margin-top:20rpx" />
       </view>
     </view>
     <view class="btn">
@@ -100,7 +111,6 @@ export default {
   },
   methods: {
     async afterRead(event) {
-      console.log(event.name)
       // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
       let lists = [].concat(event.file)
       let fileListLen = this.fileList[`fileList${event.name}`].length
@@ -139,9 +149,16 @@ export default {
       this.fileList[`fileList${event.name}`].splice(event.index, 1)
     },
     commitJob() {
-      this.fileList1.forEach(item => {
-        this.commitJobParams.images.push(`/${item.url}`)
-      });
+      Object.keys(this.fileList).forEach(key => {
+        this.fileList[key].forEach(item => {
+          this.commitJobParams.images.push(`/${item.url}`)
+        });
+      })
+      // 此判断只对新版生效
+      if (this.type != 'old' && this.commitJobParams.images.length < this.newContent.length) {
+        this.commitJobParams.images = []
+        return this.$u.toast('请上传全部图片')
+      }
       this.commitJobParams.images = this.commitJobParams.images.join(',')
       commitJob(this.commitJobParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
