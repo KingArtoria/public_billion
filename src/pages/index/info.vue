@@ -39,27 +39,19 @@
           <view class="content_3_1_2">任务步骤</view>
           <view class="content_3_1_3">(请参考以下做单流程做单)</view>
         </view>
-        <view class="content_3_2" v-html="item.content" />
-        <!-- <view class="content_3_2">
-          <view class="content_3_2_1">
-            <view class="content_3_2_1_1">1</view>
-            <view class="content_3_2_1_2">步骤一，让用户微信扫描推广码，进入团油小程序，授权微信绑定手机号，进入活动页面。</view>
-          </view>
-          <view class="content_3_2_2">
-            <view class="content_3_2_2_1" />
-            <view class="content_3_2_2_1" />
+        <view class="content_3_2" v-html="item.content" v-if="type == 'old'" />
+        <view class="content_3_3" v-else>
+          <view class="content_3_3" v-for="(item, index) in newContent" :key="index">
+            <view class="content_3_3_1">
+              <view class="content_3_3_1_1">{{ index + 1 }}</view>
+              <view class="content_3_3_1_2">{{ item.text }}</view>
+            </view>
+            <view class="content_3_3_2">
+              <image class="content_3_3_2_1" v-for="(item2, index2) in item.img" :key="index2" :src="item2"
+                mode="widthFix" />
+            </view>
           </view>
         </view>
-        <view class="content_3_2">
-          <view class="content_3_2_1">
-            <view class="content_3_2_1_1">1</view>
-            <view class="content_3_2_1_2">步骤一，让用户微信扫描推广码，进入团油小程序，授权微信绑定手机号，进入活动页面。</view>
-          </view>
-          <view class="content_3_2_2">
-            <view class="content_3_2_2_1" />
-            <view class="content_3_2_2_1" />
-          </view>
-        </view> -->
       </view>
       <!-- <view class="content_4">
         <view class="content_4_1">
@@ -83,7 +75,9 @@ import { applyJob } from '../../utils/api'
 export default {
   data() {
     return {
-      item: {}
+      item: {},
+      type: "",
+      newContent: [],
     }
   },
   methods: {
@@ -96,11 +90,27 @@ export default {
   },
   onLoad() {
     this.item = uni.getStorageSync('item')
-    // 查询item.content中src=\"替换为src=\"http://zxyj.xzxiaocaihua.cn
-    this.item.content = this.item.content.replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
-    // 查询item.content中img替换为img style="width:90%""
-    this.item.content = this.item.content.replace(/img/g, 'img style="width:90%"" onClick=""')
-    console.log(this.item)
+    let newContent = []
+    let index = 0
+    // 判断item.content数据类型是否为数组或者字符串
+    if (this.item.content instanceof Array) {
+      this.type = "new"
+      this.item.content.forEach(item2 => {
+        if (item2[0].substring(0, 4) == 'text') {
+          index = item2[0].substring(4, 5)
+          newContent[index - 1] = { text: item2[1] }
+        } else {
+          newContent[index - 1].img = []
+          newContent[index - 1].img.push(item2[1])
+        }
+      });
+      this.newContent = newContent
+      console.log(this.newContent)
+    } else {
+      this.type = 'old'
+      this.item.content = this.item.content.replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
+      this.item.content = this.item.content.replace(/img/g, 'img style="width:90%""')
+    }
   },
   components: { Head }
 }

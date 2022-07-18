@@ -2,7 +2,7 @@
 	<view>
 		<view class="head">
 			<view class="head_1">
-				<view class="head_1_1">
+				<view class="head_1_1" @click="back">
 					<image class="head_1_1_1" src="../../static/fanhui_w.webp" />
 				</view>
 				<view class="head_2_1">入驻会员</view>

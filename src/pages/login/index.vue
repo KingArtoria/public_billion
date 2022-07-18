@@ -26,7 +26,7 @@
       <view class="content_5" v-show="loginType == 2" @click="loginType = 1">账号登录</view>
     </view>
     <view class="bottom">
-      <view class="bottom_1">登录即代表您已阅读并统一</view>
+      <view class="bottom_1">登录即代表您已阅读并同意</view>
       <view class="bottom_2">《众享亿家用户协议》</view>
     </view>
   </view>

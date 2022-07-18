@@ -82,6 +82,7 @@ export default {
       }
     },
     convert() {
+      console.log(1)
       let integral = this.assetsIndexData.integral
       let coin = this.assetsIndexData.coin
       let params1 = { account: integral, convert_id: 1 }

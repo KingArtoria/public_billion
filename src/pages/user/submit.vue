@@ -39,9 +39,30 @@
           <view class="content_3_1_2">任务步骤</view>
           <view class="content_3_1_3">(请参考以下做单流程做单)</view>
         </view>
-        <view class="content_3_2" v-html="item.content" />
+        <view class="content_3_2" v-html="item.content" v-if="type == 'old'" />
+        <view class="content_3_3" v-else>
+          <view class="content_3_3" v-for="(item, index) in newContent" :key="index">
+            <view class="content_3_3_1">
+              <view class="content_3_3_1_1">{{ index + 1 }}</view>
+              <view class="content_3_3_1_2">{{ item.text }}</view>
+            </view>
+            <view class="content_3_3_2">
+              <image class="content_3_3_2_1" v-for="(item2, index2) in item.img" :key="index2" :src="item2"
+                mode="widthFix" />
+              <u-upload :fileList="fileList[`fileList${index + 1}`]" @afterRead="afterRead" @delete="deletePic"
+                :name="index + 1" :maxCount="1" width="348rpx" height="747rpx">
+                <view class="content_3_3_2_2">
+                  <view class="content_3_3_2_2_1">
+                    <image class="content_3_3_2_2_2" src="../../static/xiangji.png" />
+                  </view>
+                  <view class="content_3_3_2_2_2">选择图片</view>
+                </view>
+              </u-upload>
+            </view>
+          </view>
+        </view>
       </view>
-      <view class="content_4">
+      <view class="content_4" v-if="type == 'old'">
         <view class="content_4_1" style="font-size:20rpx">提交数据</view>
         <u--input placeholder="选填,请输入凭证" border="surround" v-model="commitJobParams.voucher" fontSize="20rpx" />
         <u-upload :fileList="fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple :maxCount="9"
@@ -61,17 +82,30 @@ export default {
   data() {
     return {
       item: {},
-      fileList1: [],
+      fileList: {
+        fileList1: [],
+        fileList2: [],
+        fileList3: [],
+        fileList4: [],
+        fileList5: [],
+        fileList6: [],
+        fileList7: [],
+        fileList8: [],
+        fileList9: [],
+      },
       commitJobParams: { images: [] },
+      type: "",
+      newContent: [],
     }
   },
   methods: {
     async afterRead(event) {
+      console.log(event.name)
       // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
       let lists = [].concat(event.file)
-      let fileListLen = this[`fileList${event.name}`].length
+      let fileListLen = this.fileList[`fileList${event.name}`].length
       lists.map((item) => {
-        this[`fileList${event.name}`].push({
+        this.fileList[`fileList${event.name}`].push({
           ...item,
           status: 'uploading',
           message: '上传中'
@@ -79,8 +113,8 @@ export default {
       })
       for (let i = 0; i < lists.length; i++) {
         const result = await this.uploadFilePromise(lists[i].url)
-        let item = this[`fileList${event.name}`][fileListLen]
-        this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
+        let item = this.fileList[`fileList${event.name}`][fileListLen]
+        this.fileList[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
           status: 'success',
           message: '',
           url: result
@@ -102,7 +136,7 @@ export default {
       })
     },
     deletePic(event) {
-      this[`fileList${event.name}`].splice(event.index, 1)
+      this.fileList[`fileList${event.name}`].splice(event.index, 1)
     },
     commitJob() {
       this.fileList1.forEach(item => {
@@ -118,10 +152,27 @@ export default {
   },
   onLoad() {
     this.item = uni.getStorageSync('item')
-    // 查询item.content中src=\"替换为src=\"http://zxyj.xzxiaocaihua.cn
-    this.item.content = this.item.content.replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
-    // 查询item.content中img替换为img style="width:90%""
-    this.item.content = this.item.content.replace(/img/g, 'img style="width:90%"')
+    let newContent = []
+    let index = 0
+    // 判断item.content数据类型是否为数组或者字符串
+    if (this.item.content instanceof Array) {
+      this.type = "new"
+      this.item.content.forEach(item2 => {
+        if (item2[0].substring(0, 4) == 'text') {
+          index = item2[0].substring(4, 5)
+          newContent[index - 1] = { text: item2[1] }
+        } else {
+          newContent[index - 1].img = []
+          newContent[index - 1].img.push(item2[1])
+        }
+      });
+      this.newContent = newContent
+      console.log(this.newContent)
+    } else {
+      this.type = 'old'
+      this.item.content = this.item.content.replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
+      this.item.content = this.item.content.replace(/img/g, 'img style="width:90%""')
+    }
     this.commitJobParams.id = this.item.user_job_id
   },
   components: { Head }

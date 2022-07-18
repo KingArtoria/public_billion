@@ -25,15 +25,15 @@ export default {
 .head {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   height: 195rpx;
   box-sizing: border-box;
   padding: 0 26rpx;
-  padding-top: 120rpx;
   position: fixed;
   width: 100%;
   background: #fff;
   z-index: 5;
+  padding-top: 121rpx;
 
   .head_1,
   .head_2,

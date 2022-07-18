@@ -69,8 +69,8 @@ export default {
       userJob(this.userJobParams).then(res => {
         res.data.list.forEach(item => {
           item.cooperate = `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
-          // item下的create_time只保留年月日
-          item.create_time = item.create_time.split(' ')[0]
+          // item.create_time改为YYYY-MM-dd格式
+          item.create_time = String(item.create_time).split(" ")[0]
         });
         this.list = res.data.list
       })

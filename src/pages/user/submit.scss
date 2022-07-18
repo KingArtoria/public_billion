@@ -91,6 +91,8 @@
   .content_3 {
     background: #fff;
     padding: 0 24rpx;
+    padding-right: calc(24rpx - 8rpx);
+    padding-bottom: 30rpx;
     .content_3_1 {
       height: 83rpx;
       display: flex;
@@ -125,6 +127,74 @@
       margin-bottom: 30rpx;
       width: 700rpx;
       text-align: center;
+    }
+    .content_3_3 {
+      margin-bottom: 30rpx;
+      .content_3_3_1 {
+        display: flex;
+        margin-bottom: 30rpx;
+        .content_3_3_1_1 {
+          width: 30rpx;
+          height: 30rpx;
+          background: #ff644d;
+          border-radius: 50%;
+          line-height: 30rpx;
+          text-align: center;
+          font-size: 24rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #ffffff;
+          margin-right: 8rpx;
+          margin-top: 5rpx;
+        }
+        .content_3_3_1_2 {
+          width: 670rpx;
+          font-size: 24rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #1a1a1a;
+          line-height: 41rpx;
+          word-break: break-all;
+        }
+      }
+      .content_3_3_2 {
+        display: flex;
+        .content_3_3_2_1 {
+          width: 348rpx;
+          margin-right: 9rpx;
+        }
+        .content_3_3_2_2 {
+          width: 348rpx;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 747rpx;
+          .content_3_3_2_2_1 {
+            width: 154rpx;
+            height: 154rpx;
+            background: #ffffff;
+            border: 1rpx solid #c9c9c9;
+            border-radius: 14rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22rpx;
+            .content_3_3_2_2_2 {
+              width: 71rpx;
+              height: 53rpx;
+            }
+          }
+          .content_3_3_2_2_2 {
+            font-size: 28rpx;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #a7a7a7;
+            text-align: center;
+            line-height: 1;
+          }
+        }
+      }
     }
   }
   .content_4 {
