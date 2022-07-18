@@ -5,9 +5,10 @@
 				<view class="content_1_1_1">首页</view>
 				<view class="content_1_1_2">
 					<image src="../../static/sousuo.webp" class="content_1_1_2_1" />
-					<view class="content_1_1_2_2">乐播 | 团油 | 招商证券 | 腾讯大王卡</view>
+					<u--input fontSize="26rpx" placeholder="乐播 | 团油 | 招商证券 | 腾讯大王卡" border="none" confirm-type="send"
+						v-model="search" @confirm="confirm" />
 				</view>
-				<image class="content_1_1_3" src="../../static/xiaoxi.webp" />
+				<image class="content_1_1_3" src="../../static/xiaoxi.webp" @click="goNews" />
 			</view>
 			<image class="content_1_2" :src="banner" v-if="banner" />
 		</view>
@@ -48,13 +49,22 @@
 				<TaskDay v-for="(item, index) in dayList" :key="index" :item="item" />
 			</view>
 		</view>
+		<u-overlay :show="show">
+			<view class="version">
+				<view class="version_1" @tap.stop>
+					<view class="version_1_1">新版本更新提醒</view>
+					<view class="version_1_2">{{ text }}</view>
+					<view class="version_1_3" @click="newApp">立即更新</view>
+				</view>
+			</view>
+		</u-overlay>
 	</view>
 </template>
 
 <script>
 import TaskHot from '../../components/Task_hot.vue'
 import TaskDay from '../../components/Task_day.vue'
-import { bannerList, hotList, list } from '../../utils/api'
+import { bannerList, hotList, list, version } from '../../utils/api'
 export default {
 	data() {
 		return {
@@ -63,6 +73,11 @@ export default {
 			banner: "",
 			hotListParams: { page: 1, num: 4 },
 			listParams: { page: 1, num: 10 },
+			show: false,
+			text: "",
+			lv: "",
+			downloadurl: "",
+			search: ""
 		}
 	},
 	onLoad() { },
@@ -104,11 +119,44 @@ export default {
 				url: '/pages/user/promote'
 			});
 		},
+		goNews() {
+			uni.navigateTo({
+				url: '/pages/index/news'
+			});
+		},
+		version() {
+			version().then(res => {
+				this.text = res.data.content
+				this.lv = res.data.newversion
+				this.downloadurl = res.data.downloadurl
+				this.lv = this.lv.replace(/\./g, "")
+				this._version = this._version.replace(/\./g, "")
+				if (this._version < this.lv) {
+					this.show = true
+				}
+			})
+		},
+		newApp() {
+			uni.downloadFile({
+				url: this.downloadurl,
+				success: res => {
+					uni.openDocument({ filePath: res.tempFilePath });
+				},
+			});
+		},
+		confirm() {
+			uni.navigateTo({
+				url: `/pages/index/search?title=${this.search}`
+			});
+		},
 	},
-	onLoad() {
+	onShow() {
+		this.version()
 		this.bannerList()
 		this.hotList()
 		this.list()
+	},
+	onLoad() {
 	},
 	onReachBottom() {
 		this.listParams.page += 1

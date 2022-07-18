@@ -8,7 +8,7 @@
 					<view class="content_1_1_1">账号与安全</view>
 					<image class="content_1_1_2" src="../../static/jiantou_tz.webp" />
 				</view>
-				<view class="content_1_1">
+				<view class="content_1_1" @click="goAboutUs">
 					<view class="content_1_1_1">关于我们</view>
 					<image class="content_1_1_2" src="../../static/jiantou_tz.webp" />
 				</view>
@@ -23,36 +23,41 @@
 	</view>
 </template>
 <script>
-	import Head from '../../components/Head'
-	export default {
-		components: {
-			Head
+import Head from '../../components/Head'
+export default {
+	components: {
+		Head
+	},
+	data() {
+		return {
+			show: false,
+		}
+	},
+	methods: {
+		goPassword() {
+			uni.navigateTo({
+				url: '/pages/user/change_password'
+			})
 		},
-		data() {
-			return {
-				show: false,
-			}
+		logout() {
+			uni.removeStorageSync('app_token')
+			uni.redirectTo({
+				url: '/pages/login/index'
+			})
 		},
-		methods: {
-			goPassword() {
-				uni.navigateTo({
-					url: '/pages/user/change_password'
-				})
-			},
-			logout() {
-				uni.removeStorageSync('app_token')
-				uni.redirectTo({
-					url: '/pages/login/index'
-				})
-			}
+		goAboutUs() {
+			uni.navigateTo({
+				url: '/pages/user/about_us'
+			})
 		}
 	}
+}
 </script>
 
 <style lang="scss" scoped>
-	@import './settings.scss';
+@import './settings.scss';
 
-	/deep/ .u-modal__content__text {
-		text-align: center;
-	}
+/deep/ .u-modal__content__text {
+	text-align: center;
+}
 </style>

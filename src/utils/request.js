@@ -22,6 +22,13 @@ const request = (config) => {
           uni.removeStorageSync('token');
         }
         let response = responses[1].data;
+        if (response.code == -2) {
+          uni.removeStorageSync('userId');
+          uni.removeStorageSync('token');
+          uni.redirectTo({
+            url: '/pages/login/index'
+          });
+        }
         resolve(response);
       }
     }).catch(error => reject(error))

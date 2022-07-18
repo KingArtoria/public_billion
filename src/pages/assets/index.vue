@@ -16,6 +16,7 @@
           </view>
         </view>
         <view class="content_1_5" @click="convert">兑换</view>
+        <view class="content_1_6">兑换比例：1:10000</view>
       </view>
       <view class="content_2">
         <view class="content_2_1">

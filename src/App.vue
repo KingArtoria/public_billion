@@ -1,14 +1,9 @@
 <script>
+import Vue from 'vue'
 export default {
 	onLaunch: function () {
-		console.log('App Launch')
+		Vue.prototype._version = "2.0.0"
 	},
-	onShow: function () {
-		console.log('App Show')
-	},
-	onHide: function () {
-		console.log('App Hide')
-	}
 }
 </script>
 

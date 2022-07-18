@@ -183,11 +183,24 @@ export const problem = data => {
 		data
 	})
 }
-
 // ? 微信支付
 export const wxpay = () => {
 	return request({
 		url: "/wxpay/index",
+		method: "POST",
+	})
+}
+// ? 消息
+export const notice = () => {
+	return request({
+		url: "/notice/notice",
+		method: "POST",
+	})
+}
+// ? 版本信息
+export const version = () => {
+	return request({
+		url: "/Version/version",
 		method: "POST",
 	})
 }

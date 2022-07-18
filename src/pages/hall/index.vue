@@ -49,7 +49,7 @@ export default {
       })
     },
   },
-  onLoad() {
+  onShow() {
     this.typeLeft = `calc(125rpx - 62.5rpx - 19.5rpx + 125rpx*0)`
     this.cooperateList()
   },
