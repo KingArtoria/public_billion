@@ -1,6 +1,6 @@
 const request = (config) => {
   console.log(uni.getStorageSync('app_token'))
-  config.url = 'http://zxyj.xzxiaocaihua.cn/api' + config.url;
+  config.url = 'https://zxyj.xzxiaocaihua.cn/api' + config.url;
   config.header = { 'Content-Type': 'application/x-www-form-urlencoded' }
   if (uni.getStorageSync('app_token')) {
     config.header.token = uni.getStorageSync('app_token')

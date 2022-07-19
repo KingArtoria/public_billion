@@ -28,7 +28,8 @@
     { "path": "pages/user/submit", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/about_us", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/news", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/search", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/index/search", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/protocol", "style": { "navigationStyle": "custom" } }
   ],
   "tabBar": {
     "color": "#B0ADAD",

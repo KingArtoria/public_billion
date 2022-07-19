@@ -27,7 +27,7 @@
     </view>
     <view class="bottom">
       <view class="bottom_1">登录即代表您已阅读并同意</view>
-      <view class="bottom_2">《众享亿家用户协议》</view>
+      <view class="bottom_2" @click="goProtocol">《众享亿家用户协议》</view>
     </view>
   </view>
 </template>
@@ -95,6 +95,11 @@ export default {
       uni.navigateTo({
         url: '/pages/login/forget_password'
       })
+    },
+    goProtocol() {
+      uni.navigateTo({
+        url: '/pages/index/protocol'
+      });
     },
   },
 }

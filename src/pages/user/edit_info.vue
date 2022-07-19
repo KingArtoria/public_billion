@@ -64,7 +64,7 @@ export default {
         success: chooseImageRes => {
           const tempFilePaths = chooseImageRes.tempFilePaths;
           uni.uploadFile({
-            url: 'http://zxyj.xzxiaocaihua.cn/api/Upload/upload',
+            url: 'https://zxyj.xzxiaocaihua.cn/api/Upload/upload',
             filePath: tempFilePaths[0],
             name: 'file',
             header: { 'token': uni.getStorageSync('token') },

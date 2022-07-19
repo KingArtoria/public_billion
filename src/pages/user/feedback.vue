@@ -87,7 +87,7 @@
 			uploadFilePromise(url) {
 				return new Promise((resolve, reject) => {
 					let a = uni.uploadFile({
-						url: 'http://zxyj.xzxiaocaihua.cn/api/Upload/upload',
+						url: 'https://zxyj.xzxiaocaihua.cn/api/Upload/upload',
 						filePath: url,
 						name: 'file',
 						header: {

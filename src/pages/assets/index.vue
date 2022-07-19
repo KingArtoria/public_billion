@@ -69,20 +69,19 @@ export default {
       switch (index) {
         case 0:
           this.typeLeft = '100.5rpx'
-          this.detailData = res.data.list.bill_list
+          this.detailData = this.assetsIndexData.list.bill_list
           break;
         case 1:
           this.typeLeft = '354rpx'
-          this.detailData = res.data.list.job_list
+          this.detailData = this.assetsIndexData.list.job_list
           break;
         case 2:
           this.typeLeft = '606rpx'
-          this.detailData = res.data.list.coin_list
+          this.detailData = this.assetsIndexData.list.coin_list
           break;
       }
     },
     convert() {
-      console.log(1)
       let integral = this.assetsIndexData.integral
       let coin = this.assetsIndexData.coin
       let params1 = { account: integral, convert_id: 1 }
@@ -106,7 +105,7 @@ export default {
       });
     },
   },
-  onLoad() {
+  onShow() {
     this.typeLeft = '100.5rpx'
     this.assetsIndex()
   },

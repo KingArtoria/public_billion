@@ -53,15 +53,14 @@
           </view>
         </view>
       </view>
-      <!-- <view class="content_4">
+      <view class="content_4">
         <view class="content_4_1">
           <view class="content_4_1_1" />
           <view class="content_4_1_2">做单公码</view>
         </view>
-        <view class="content_4_2" />
-        <view class="content_4_3">团油拉新项目公码，请注意保存</view>
-        <view class="content_4_4">注：因抖音口令规则改变口令有可能短暂失效，个别用户不自动跳转到任务的，复制口令到抖音搜索栏搜索。</view>
-      </view> -->
+        <image class="content_4_2" :src="item.share_url" />
+        <!-- <view class="content_4_2" /> -->
+      </view>
     </view>
     <view class="btn">
       <view class="btn_1" @click="applyJob">领取任务</view>
@@ -75,7 +74,7 @@ import { applyJob } from '../../utils/api'
 export default {
   data() {
     return {
-      item: {},
+      item: { content: [] },
       type: "",
       newContent: [],
     }
@@ -92,12 +91,16 @@ export default {
     this.item = uni.getStorageSync('item')
     let newContent = []
     let index = 0
-    // 判断item.content数据类型是否为数组或者字符串
-    if (this.item.content instanceof Array) {
+    if (typeof (this.item.content) == 'string') {
+      this.type = 'old'
+      this.item.content = String(this.item.content).replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
+      this.item.content = String(this.item.content).replace(/img/g, 'img style="width:90%""')
+    } else {
       this.type = "new"
+      console.log(this.item.content)
       this.item.content.forEach(item2 => {
-        if (item2[0].substring(0, 4) == 'text') {
-          index = item2[0].substring(4, 5)
+        if (String(item2[0]).substring(0, 4) == 'text') {
+          index = String(item2[0]).substring(4, 5)
           newContent[index - 1] = { text: item2[1] }
         } else {
           newContent[index - 1].img = []
@@ -105,11 +108,6 @@ export default {
         }
       });
       this.newContent = newContent
-      console.log(this.newContent)
-    } else {
-      this.type = 'old'
-      this.item.content = this.item.content.replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
-      this.item.content = this.item.content.replace(/img/g, 'img style="width:90%""')
     }
   },
   components: { Head }

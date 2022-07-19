@@ -15,7 +15,7 @@
             "delay" : 0
         },
         "modules" : {
-            "Share" : {}
+            "Payment" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -55,7 +55,7 @@
                 "payment" : {
                     "weixin" : {
                         "__platform__" : [ "android" ],
-                        "appid" : "",
+                        "appid" : "wx0251b19f1e1d9011",
                         "UniversalLinks" : ""
                     }
                 },
