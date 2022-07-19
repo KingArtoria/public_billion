@@ -51,6 +51,7 @@
     </view>
     <u-modal :show="!isZFB && !isWX" title="提示" content='请先去绑定提现支付宝账户或微信账户' showCancelButton @confirm="confirm"
       @close="cancel_close" @cancel="cancel_close" />
+    <u-modal :show="isDrawShow" title="系统提示" content='提现成功,金额24小时内到账' @confirm="_pageBack" />
   </view>
 </template>
 
@@ -67,6 +68,7 @@ export default {
       text: "",
       selectPayData: [true, false],
       drawParams: {},
+      isDrawShow: false
     }
   },
   methods: {
@@ -97,7 +99,7 @@ export default {
       this.drawParams.type = this.selectPayData[0] ? 2 : 3
       draw(this.drawParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('提现成功,金额24小时内到账')
+        this.isDrawShow = true
         this.price -= this.drawParams.account
       })
     },
