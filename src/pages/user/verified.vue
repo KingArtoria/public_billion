@@ -31,11 +31,15 @@ import { auth } from '../../utils/api'
 export default {
   data() {
     return {
-      authParams: {},
+      authParams: { name: "", card: "" }
     }
   },
   methods: {
     auth() {
+      if (name == "" || card == "") {
+        this.$u.toast("请输入完整信息")
+        return
+      }
       auth(this.authParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
         uni.navigateTo({

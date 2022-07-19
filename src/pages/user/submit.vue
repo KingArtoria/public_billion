@@ -73,7 +73,7 @@
         <view class="content_4_1" style="font-size:20rpx">提交数据</view>
         <u--input placeholder="选填,请输入凭证" border="surround" v-model="commitJobParams.voucher" fontSize="20rpx" />
         <u-upload :fileList="fileList.fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
-          :maxCount="9" style="margin-top:20rpx" />
+          :maxCount="9" style="margin-top:20rpx" width="120rpx" height="120rpx" />
       </view>
     </view>
     <view class="btn">

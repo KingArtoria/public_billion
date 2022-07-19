@@ -42,8 +42,8 @@
           <view class="content_4_1_1" />
           <view class="content_4_1_2">提现说明</view>
         </view>
-        <view class="content_4_2">1、提现金额次日到账。</view>
-        <view class="content_4_2">2、提现说明文案这是一段文字，等后面写。</view>
+        <view class="content_4_2">1、提现金额会在1-3个工作日到账。</view>
+        <view class="content_4_2">2、提现最低金额为10元</view>
       </view>
     </view>
     <view class="btn">
