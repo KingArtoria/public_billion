@@ -9,6 +9,7 @@
     padding: 0 25rpx;
     padding-top: 159rpx;
     box-sizing: border-box;
+    position: relative;
     .content_1_1 {
       display: flex;
       align-items: center;
@@ -66,9 +67,19 @@
     .content_1_2 {
       width: 700rpx;
       height: 107rpx;
-      display: block;
       margin: 0 auto;
       margin-top: 38rpx;
+      background: url('../../static/ruzhu-tu.webp') no-repeat;
+      background-size: 100%;
+      font-size: 28rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      font-style: italic;
+      color: #ffdb85;
+      line-height: 107rpx;
+      padding-right: 23rpx;
+      box-sizing: border-box;
+      text-align: end;
     }
     .content_1_3 {
       height: 94rpx;
@@ -81,6 +92,8 @@
       font-weight: 800;
       color: #000000;
       background: #fff;
+      position: absolute;
+      bottom: 0;
     }
   }
   .content_2 {

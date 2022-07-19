@@ -16,7 +16,8 @@
 						<view class="content_1_1_2_2">会员等级：{{ userInfo.vip_name }}</view>
 					</view>
 				</view>
-				<image class="content_1_2" src="../../static/ruzhu-tu.webp" @click="goVip" />
+				<view class="content_1_2">{{ userInfo.rank_record == 1 ? '您已成功入驻' : '申请入驻' }}</view>
+				<!-- <image class="content_1_2" src="../../static/ruzhu-tu.webp" @click="goVip" /> -->
 				<view class="content_1_3">我的任务</view>
 			</view>
 			<view class="content_2">
