@@ -16,7 +16,10 @@
 						<view class="content_1_1_2_2">会员等级：{{ userInfo.vip_name }}</view>
 					</view>
 				</view>
-				<view class="content_1_2">{{ userInfo.rank_record == 1 ? '您已成功入驻' : '申请入驻' }}</view>
+				<view class="content_1_2">
+					<view class="content_1_2_1" v-if="userInfo.rank_record == 1">您已成功入驻</view>
+					<view class="content_1_2_2" v-else @click="goVip">我要入驻</view>
+				</view>
 				<!-- <image class="content_1_2" src="../../static/ruzhu-tu.webp" @click="goVip" /> -->
 				<view class="content_1_3">我的任务</view>
 			</view>
@@ -24,27 +27,25 @@
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/qbrw.webp" />
 					<view class="content_2_1_2">全部任务</view>
-					<view class="content_2_1_3" v-if="count != 0">{{ count }}</view>
 				</view>
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/daitijiao.webp" />
 					<view class="content_2_1_2">待提交</view>
-					<view class="content_2_1_3" v-if="num[0]">{{ num[0] }}</view>
+					<view class="content_2_1_3" v-if="num1 != 0">{{ num1 }}</view>
 				</view>
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/shenhz.webp" />
 					<view class="content_2_1_2">审核中</view>
-					<view class="content_2_1_3" v-if="num[1]">{{ num[1] }}</view>
+					<view class="content_2_1_3" v-if="num2 != 0">{{ num2 }}</view>
 				</view>
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/yuitongg.webp" />
 					<view class="content_2_1_2">已通过</view>
-					<view class="content_2_1_3" v-if="num[2]">{{ num[2] }}</view>
 				</view>
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/weitongg.webp" />
 					<view class="content_2_1_2">未通过</view>
-					<view class="content_2_1_3" v-if="num[3]">{{ num[3] }}</view>
+					<view class="content_2_1_3" v-if="num3 != 0">{{ num3 }}</view>
 				</view>
 			</view>
 			<view class="content_3">
@@ -88,8 +89,9 @@ export default {
 	data() {
 		return {
 			userInfo: {},
-			num: [0, 0, 0, 0],
-			count: 0,
+			num1: 0,
+			num2: 0,
+			num3: 0,
 		}
 	},
 	methods: {
@@ -100,8 +102,9 @@ export default {
 				// 删除userInfo中vip_level值中的"VIP"字段
 				this.userInfo.vip_level = this.userInfo.vip_level.replace('VIP', '')
 				res.data.num.forEach(item => {
-					this.num[item.status - 1] = item.num
-					this.count += item.num
+					if (item.status == 1) this.num1 = item.num
+					else if (item.status == 2) this.num2 = item.num
+					else if (item.status == 4) this.num3 = item.num
 				});
 			})
 		},
@@ -153,7 +156,9 @@ export default {
 		},
 	},
 	onShow() {
-		this.count = 0
+		this.num1 = 0
+		this.num2 = 0
+		this.num3 = 0
 		this.memberIndex()
 	},
 }

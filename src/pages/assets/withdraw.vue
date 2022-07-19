@@ -44,6 +44,7 @@
         </view>
         <view class="content_4_2">1、提现金额会在1-3个工作日到账。</view>
         <view class="content_4_2">2、提现最低金额为10元</view>
+        <view class="content_4_2">3、提现需要收取1%的手续费</view>
       </view>
     </view>
     <view class="btn">
@@ -76,9 +77,9 @@ export default {
       memberIndex().then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
         this.userInfo = res.data.member
-        if (this.userInfo.ali_number != '') this.isZFB = true
+        if (this.userInfo.ali_image != '') this.isZFB = true
         else this.isZFB = false
-        if (this.userInfo.wx_number != '') this.isWX = true
+        if (this.userInfo.wx_image != '') this.isWX = true
         else this.isWX = false
         if (this.isZFB) {
           this.text = "支付宝账号"
@@ -106,6 +107,8 @@ export default {
   },
   onLoad(option) {
     this.price = option.price
+  },
+  onShow() {
     this.memberIndex()
   },
   components: { Head },

@@ -58,13 +58,15 @@ export default {
               let res = JSON.parse(uploadFileRes.data)
               if (res.code == -1) return this.$u.toast('上传失败')
               this.imageShow = `http://zxyj.xzxiaocaihua.cn/${res.data}`
-              this.image = res.data
+              this.image = this.imageShow
+              // this.image = res.data
             }
           });
         }
       });
     },
     bindAccount() {
+      if (this.image == "") return this.$u.toast('请上传收款码')
       if (this.op_.type == 'zfb') this.aliCommit()
       else if (this.op_.type) this.wxCommit()
     },
@@ -96,14 +98,15 @@ export default {
           this.image = this.userInfo.member.wx_image
           this.name = this.userInfo.member.wx_name
           this.number = this.userInfo.member.wx_number
-          if (this.userInfo.member.wx_image != '') this.imageShow = `http://zxyj.xzxiaocaihua.cn/${this.userInfo.member.wx_image}`
+          this.imageShow = this.image
         } else if (this.op_.type == 'zfb') {
           this.aliCommitParams.ali_name = this.userInfo.member.ali_name;
           this.aliCommitParams.ali_number = this.userInfo.member.ali_number
           this.image = this.userInfo.member.ali_image
           this.name = this.userInfo.member.ali_name
           this.number = this.userInfo.member.ali_number
-          if (this.userInfo.member.ali_image != '') this.imageShow = `http://zxyj.xzxiaocaihua.cn/${this.userInfo.member.ali_image}`
+          this.imageShow = this.image
+
         }
       })
     },
