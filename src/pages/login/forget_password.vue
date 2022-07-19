@@ -8,13 +8,13 @@
         <u--input placeholder="请输入手机号" border="none" v-model="forgetPassParams.phone" />
       </view>
       <view class="content_2">
-        <u--input placeholder="请输入验证码" border="none" v-model="forgetPassParams.code">
+        <u-input placeholder="请输入验证码" border="none" v-model="forgetPassParams.code">
           <template slot="suffix">
             <u-code ref="uCode" @change="codeChange" changeText="X秒重新获取" />
             <u-button @tap="getCode" :text="tips" type="primary" shape="circle" plain color="#FF644D" size="mini"
               style="width: 148rpx;" />
           </template>
-        </u--input>
+        </u-input>
       </view>
       <view class="content_2">
         <u--input placeholder="请输入密码" border="none" type="password" v-model="forgetPassParams.password" />
@@ -24,6 +24,7 @@
       </view>
       <view class="content_3" @click="forgetPass">确定</view>
     </view>
+    <u-modal :show="isForgetPassShow" title="系统提示" content='修改成功' @confirm="_pageBack" />
   </view>
 </template>
 
@@ -36,6 +37,7 @@ export default {
       tips: "获取验证码",
       forgetPassParams: {},
       smsParams: {},
+      isForgetPassShow: false
     }
   },
   methods: {
@@ -60,7 +62,7 @@ export default {
     forgetPass() {
       forgetPass(this.forgetPassParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        uni.$u.toast('修改成功');
+        this.isForgetPassShow = true;
       })
     },
   },

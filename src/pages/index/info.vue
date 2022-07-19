@@ -65,6 +65,7 @@
     <view class="btn">
       <view class="btn_1" @click="applyJob">领取任务</view>
     </view>
+    <u-modal :show="isApplyJob" title="系统提示" content='领取成功' @confirm="_pageBack" />
   </view>
 </template>
 
@@ -77,13 +78,14 @@ export default {
       item: { content: [] },
       type: "",
       newContent: [],
+      isApplyJob: false,
     }
   },
   methods: {
     applyJob() {
       applyJob({ id: this.item.id }).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('领取成功')
+        this.isApplyJob = true
       })
     }
   },

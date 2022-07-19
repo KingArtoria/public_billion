@@ -79,6 +79,7 @@
     <view class="btn">
       <view class="btn_1" @click="commitJob">提交任务</view>
     </view>
+    <u-modal :show="isShow" title="系统提示" content='提交成功,请等待审核' @confirm="_pageBack" />
   </view>
 </template>
 
@@ -103,6 +104,7 @@ export default {
       commitJobParams: { images: [] },
       type: "",
       newContent: [],
+      isShow: false,
     }
   },
   methods: {
@@ -158,7 +160,7 @@ export default {
       this.commitJobParams.images = this.commitJobParams.images.join(',')
       commitJob(this.commitJobParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('提交成功,请等待审核')
+        this.isShow = true
         this.commitJobParams.images = []
       })
     },

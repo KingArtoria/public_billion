@@ -30,6 +30,7 @@
     </view>
     <u-picker :show="show" :columns="columns" @cancel="show = false" @close="show = false" closeOnClickOverlay
       @confirm="confirm" />
+    <u-modal :show="isShow" title="系统提示" content='修改成功' @confirm="_pageBack" />
   </view>
 </template>
 
@@ -44,6 +45,7 @@ export default {
       show: false,
       head_image: "",
       editMemberParams: {},
+      isShow: false,
     }
   },
   methods: {
@@ -82,7 +84,7 @@ export default {
       this.editMemberParams.nick_name = this.userInfo.nick_name
       editMember(this.editMemberParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('修改成功')
+        this.isShow = true
         this.memberIndex()
       })
     },

@@ -21,6 +21,7 @@
       </view>
       <view class="content_3" @click="bindAccount">保存</view>
     </view>
+    <u-modal :show="isShow" title="系统提示" content='绑定成功' @confirm="_pageBack" />
   </view>
 </template>
 
@@ -37,7 +38,8 @@ export default {
       number: "",
       image: "",
       imageShow: "",
-      userInfo: {}
+      userInfo: {},
+      isShow: false,
     }
   },
   methods: {
@@ -72,7 +74,7 @@ export default {
       this.wxCommitParams.wx_image = this.image
       wxCommit(this.wxCommitParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('绑定成功')
+        this.isShow = true
       })
     },
     aliCommit() {
@@ -81,7 +83,7 @@ export default {
       this.aliCommitParams.ali_image = this.image
       aliCommit(this.aliCommitParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('绑定成功')
+        this.isShow = true
       })
     },
     memberIndex() {

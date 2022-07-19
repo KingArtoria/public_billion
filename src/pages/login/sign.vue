@@ -27,6 +27,7 @@
       </view>
       <view class="content_3" @click="register">注册</view>
     </view>
+    <u-modal :show="isShow" title="系统提示" content='注册成功' @confirm="_pageBack" />
   </view>
 </template>
 
@@ -39,6 +40,7 @@ export default {
       tips: "获取验证码",
       registerParams: {},
       smsParams: {},
+      isShow: false,
     }
   },
   methods: {
@@ -47,7 +49,8 @@ export default {
         return this.$u.toast('两次密码不一致')
       register(this.registerParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
-        this.$u.toast('注册成功')
+        // this.$u.toast('注册成功')
+        this.isShow = true
       })
     },
     codeChange(text) {
