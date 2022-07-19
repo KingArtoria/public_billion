@@ -241,7 +241,7 @@
       font-size: 22rpx;
       font-family: PingFang SC;
       font-weight: 400;
-      color: #A0A0A0;
+      color: #a0a0a0;
       line-height: 41rpx;
     }
   }
@@ -311,7 +311,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  z-index: 999;
   .btn_1 {
     width: 700rpx;
     height: 80rpx;
