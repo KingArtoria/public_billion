@@ -49,6 +49,10 @@
             color: #1a1a1a;
             line-height: 1;
             margin-bottom: 25rpx;
+            width: 200rpx;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
           .content_2_1_1_2_2 {
             display: flex;

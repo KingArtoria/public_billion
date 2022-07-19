@@ -111,7 +111,7 @@ export default {
       });
     },
   },
-  onLoad() {
+  onShow() {
     this.userJob()
   },
   components: { Head }

@@ -19,11 +19,13 @@
         </view>
         <view class="content_2_1">
           <view class="content_2_1_1">绑定支付宝</view>
-          <view class="content_2_1_1" @click="goBindAccount('zfb')">前往绑定</view>
+          <view class="content_2_1_1" @click="goBindAccount('zfb')">{{ userInfo.ali_image == "" ? "前往绑定" : "更改绑定" }}
+          </view>
         </view>
         <view class="content_2_1">
           <view class="content_2_1_1">绑定微信</view>
-          <view class="content_2_1_1" @click="goBindAccount('wx')">前往绑定</view>
+          <view class="content_2_1_1" @click="goBindAccount('wx')">{{ userInfo.wx_image == "" ? "前往绑定" : "更改绑定" }}
+          </view>
         </view>
       </view>
       <view class="content_3" @click="editMember">保存</view>

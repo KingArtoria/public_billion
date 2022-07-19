@@ -183,7 +183,8 @@
 
       .content_3_3_2 {
         display: flex;
-
+        position: relative;
+        align-items: center;
         .content_3_3_2_1 {
           width: 348rpx;
           margin-right: 9rpx;
@@ -195,7 +196,6 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          min-height: 747rpx;
 
           .content_3_3_2_2_1 {
             width: 154rpx;

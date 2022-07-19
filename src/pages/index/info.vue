@@ -25,7 +25,7 @@
           <view class="content_2_1_2">完成数量</view>
         </view>
         <view class="content_2_1">
-          <view class="content_2_1_1">{{ item.examine == null ? '未知' : `${item.examine}小时` }}</view>
+          <view class="content_2_1_1">{{ item.examine == null ? '未知' : item.examine }}</view>
           <view class="content_2_1_2">审核时间</view>
         </view>
         <view class="content_2_1">

@@ -6,11 +6,12 @@
     display: flex;
     justify-content: space-between;
     padding: 0 26rpx;
-    height: 161rpx;
     background: #fff;
+    padding-bottom: 40rpx;
     .content_1_1 {
       display: flex;
-      align-items: center;
+      // align-items: center;
+      padding-top: 38rpx;
       .content_1_1_1 {
         width: 78rpx;
         height: 78rpx;
@@ -21,13 +22,14 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 78rpx;
         .content_1_1_2_1 {
           font-size: 28rpx;
           font-family: PingFang SC;
           font-weight: bold;
           color: #1a1a1a;
           line-height: 1;
+          width: 290rpx;
+          margin-bottom: 25rpx;
         }
         .content_1_1_2_2 {
           display: flex;

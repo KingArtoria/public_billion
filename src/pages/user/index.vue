@@ -88,7 +88,7 @@ export default {
 	data() {
 		return {
 			userInfo: {},
-			num: [],
+			num: [0, 0, 0, 0],
 			count: 0,
 		}
 	},
@@ -99,15 +99,8 @@ export default {
 				this.userInfo.head_image = `http://zxyj.xzxiaocaihua.cn/${this.userInfo.head_image}`
 				// 删除userInfo中vip_level值中的"VIP"字段
 				this.userInfo.vip_level = this.userInfo.vip_level.replace('VIP', '')
-				res.data.num.forEach((item, index) => {
-					if (item.status == 1 && index == 0) this.num.push(item.num)
-					else if (item.status != 1 && index == 0) this.num.push(0)
-					if (item.status == 2 && index == 1) this.num.push(item.num)
-					else if (item.status != 2 && index == 1) this.num.push(0)
-					if (item.status == 3 && index == 2) this.num.push(item.num)
-					else if (item.status != 3 && index == 2) this.num.push(0)
-					if (item.status == 4 && index == 3) this.num.push(item.num)
-					else if (item.status != 4 && index == 3) this.num.push(0)
+				res.data.num.forEach(item => {
+					this.num[item.status - 1] = item.num
 					this.count += item.num
 				});
 			})

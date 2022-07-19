@@ -51,6 +51,7 @@ export default {
 
   .taskDay_1 {
     display: flex;
+    flex-shrink: 0;
 
     .taskDay_1_1 {
       width: 78rpx;
@@ -70,6 +71,10 @@ export default {
         font-weight: bold;
         color: #1A1A1A;
         line-height: 1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 300rpx;
       }
 
       .taskDay_2_2 {
