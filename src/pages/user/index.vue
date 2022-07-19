@@ -28,22 +28,22 @@
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/daitijiao.webp" />
 					<view class="content_2_1_2">待提交</view>
-					<view class="content_2_1_3" v-if="num[0] != 0">{{ num[0] }}</view>
+					<view class="content_2_1_3" v-if="num[0]">{{ num[0] }}</view>
 				</view>
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/shenhz.webp" />
 					<view class="content_2_1_2">审核中</view>
-					<view class="content_2_1_3" v-if="num[1] != 0">{{ num[1] }}</view>
+					<view class="content_2_1_3" v-if="num[1]">{{ num[1] }}</view>
 				</view>
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/yuitongg.webp" />
 					<view class="content_2_1_2">已通过</view>
-					<view class="content_2_1_3" v-if="num[2] != 0">{{ num[2] }}</view>
+					<view class="content_2_1_3" v-if="num[2]">{{ num[2] }}</view>
 				</view>
 				<view class="content_2_1" @click="goMyTask">
 					<image class="content_2_1_1" src="../../static/weitongg.webp" />
 					<view class="content_2_1_2">未通过</view>
-					<view class="content_2_1_3" v-if="num[3] != 0">{{ num[3] }}</view>
+					<view class="content_2_1_3" v-if="num[3]">{{ num[3] }}</view>
 				</view>
 			</view>
 			<view class="content_3">
