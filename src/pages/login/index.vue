@@ -1,7 +1,7 @@
 <template>
   <view>
     <view class="content">
-      <view class="content_1">账号登录</view>
+      <view class="content_1">{{ loginType === 1 ? '账号登录' : '手机验证码登录' }}</view>
       <view class="content_2">
         <u--input placeholder="请输入登录账号" border="none" v-model="phone" />
       </view>
