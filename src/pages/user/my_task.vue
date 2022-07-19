@@ -10,35 +10,40 @@
       </view>
       <view class="content_2">
         <view class="content_2_1" v-for="(item, index) in list" :key="index" @click="goInfo(item)">
-          <view class="content_2_1_1">
-            <image class="content_2_1_1_1" :src="item.cooperate" />
-            <view class="content_2_1_1_2">
-              <view class="content_2_1_1_2_1">{{ item.name }}</view>
-              <view class="content_2_1_1_2_2">
-                <view class="content_2_1_1_2_2_1">{{ item.category }}</view>
+          <view class="content_2_1_inner">
+            <view class="content_2_1_1">
+              <image class="content_2_1_1_1" :src="item.cooperate" />
+              <view class="content_2_1_1_2">
+                <view class="content_2_1_1_2_1">{{ item.name }}</view>
+                <view class="content_2_1_1_2_2">
+                  <view class="content_2_1_1_2_2_1">{{ item.category }}</view>
+                </view>
+                <view class="content_2_1_1_2_3">开始时间：{{ item.create_time }}</view>
               </view>
-              <view class="content_2_1_1_2_3">开始时间：{{ item.create_time }}</view>
-              <view class="content_2_1_1_2_4" v-if="item.status == 4">未通过原因：{{ item.remark }}</view>
+            </view>
+            <view class="content_2_1_2">
+              <view class="content_2_1_2_1">￥{{ item.award_number }}</view>
+              <view class="content_2_1_2_2">
+                <view class="content_2_1_2_2_1">
+                  <image class="content_2_1_2_2_1_1" src="../../static/ren.webp" />
+                  <view class="content_2_1_2_2_1_2">{{ item.number - item.stock_number }}人已赚 </view>
+                </view>
+                <view class="content_2_1_2_2_1">
+                  <image class="content_2_1_2_2_1_1" src="../../static/qiandai.webp" />
+                  <view class="content_2_1_2_2_1_2">剩余{{ item.stock_number }}个 </view>
+                </view>
+              </view>
+              <view class="content_2_1_2_3">
+                <view class="content_2_1_2_3_2" v-if="item.status == 1" @click.stop="goSubmit(item)">提交</view>
+                <view class="content_2_1_2_3_3" v-if="item.status == 2">审核中</view>
+                <view class="content_2_1_2_3_2" v-if="item.status == 3">已通过</view>
+                <view class="content_2_1_2_3_4" v-if="item.status == 4">未通过</view>
+              </view>
             </view>
           </view>
-          <view class="content_2_1_2">
-            <view class="content_2_1_2_1">￥{{ item.award_number }}</view>
-            <view class="content_2_1_2_2">
-              <view class="content_2_1_2_2_1">
-                <image class="content_2_1_2_2_1_1" src="../../static/ren.webp" />
-                <view class="content_2_1_2_2_1_2">{{ item.number - item.stock_number }}人已赚 </view>
-              </view>
-              <view class="content_2_1_2_2_1">
-                <image class="content_2_1_2_2_1_1" src="../../static/qiandai.webp" />
-                <view class="content_2_1_2_2_1_2">剩余{{ item.stock_number }}个 </view>
-              </view>
-            </view>
-            <view class="content_2_1_2_3">
-              <view class="content_2_1_2_3_2" v-if="item.status == 1" @click.stop="goSubmit(item)">提交</view>
-              <view class="content_2_1_2_3_3" v-if="item.status == 2">审核中</view>
-              <view class="content_2_1_2_3_2" v-if="item.status == 3">已通过</view>
-              <view class="content_2_1_2_3_4" v-if="item.status == 4">未通过</view>
-            </view>
+          <view v-if="item.status == 4" class="content_2_1_1_2_4">
+            <view>未通过原因：</view>
+            <view>{{ item.remark }}</view>
           </view>
         </view>
       </view>
@@ -112,6 +117,10 @@ export default {
     },
   },
   onShow() {
+    this.userJob()
+  },
+  onShow() {
+    // 刷新数据
     this.userJob()
   },
   components: { Head }

@@ -33,7 +33,7 @@ export default {
   width: 100%;
   background: #fff;
   z-index: 5;
-  padding-top: 121rpx;
+  padding-top: 80rpx;
 
   .head_1,
   .head_2,
