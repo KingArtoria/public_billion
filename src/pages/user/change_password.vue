@@ -30,7 +30,7 @@
 				<view class="btn" @click="submit">保存</view>
 			</view>
 		</view>
-		<u-modal :show="show" content='密码修改成功' @confirm="back"></u-modal>
+		<u-modal :show="show" title="系统提示" content='密码修改成功' @confirm="_pageBack"></u-modal>
 	</view>
 </template>
 
@@ -106,9 +106,6 @@ export default {
 				uni.hideLoading();
 				this.show = true
 			})
-		},
-		back() {
-			uni.navigateBack()
 		},
 	}
 }
