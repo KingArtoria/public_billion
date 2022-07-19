@@ -9,13 +9,13 @@
         <u--input placeholder="请输入密码" border="none" v-model="password" type="password" />
       </view>
       <view class="content_2" v-show="loginType == 2">
-        <u--input placeholder="请输入验证码" border="none" v-model="code">
+        <u-input placeholder="请输入验证码" border="none" v-model="code">
           <template slot="suffix">
             <u-code ref="uCode" @change="codeChange" changeText="X秒重新获取" />
             <u-button @tap="getCode" :text="tips" type="primary" shape="circle" plain color="#FF644D" size="mini"
               style="width: 148rpx;" />
           </template>
-        </u--input>
+        </u-input>
       </view>
       <view class="content_3">
         <view class="content_3_1" @click="goSign">新用户注册</view>
