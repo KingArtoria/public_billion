@@ -92,6 +92,9 @@
       .content_2_1_2 {
         flex: 1;
         margin-left: 27rpx;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
         .content_2_1_2_1 {
           font-size: 28rpx;
           font-family: PingFang SC;
@@ -105,6 +108,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          width: 314rpx;
           .content_2_1_2_2_1 {
             display: flex;
             align-items: center;

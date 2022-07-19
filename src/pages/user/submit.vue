@@ -157,6 +157,10 @@ export default {
         this.commitJobParams.images = []
         return this.$u.toast('请上传全部图片')
       }
+      // 此判断只对旧版生效
+      if (this.type == 'old' && this.commitJobParams.images.length < 1) {
+        return this.$u.toast('请上传数据图')
+      }
       this.commitJobParams.images = this.commitJobParams.images.join(',')
       commitJob(this.commitJobParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)

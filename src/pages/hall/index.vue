@@ -8,7 +8,7 @@
         <view class="content_1_1" @click="switchType(2)" :style="`color:${typeColor[2]}`">最新</view>
         <view class="content_1_1" @click="switchType(3)" :style="`color:${typeColor[3]}`">高价</view>
         <view class="content_1_1" @click="switchType(4)" :style="`color:${typeColor[4]}`">简单</view>
-        <view class="content_1_1" @click="switchType(5)" :style="`color:${typeColor[5]}`">其他</view>
+        <view class="content_1_1" @click="switchType(5)" :style="`color:${typeColor[5]}`">新手</view>
         <view class="content_1_2" :style="`left:${typeLeft}`" />
       </view>
       <view class="content_2">
@@ -42,6 +42,10 @@ export default {
     cooperateList() {
       cooperateList(this.cooperateListParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
+        else if (res.code == -3) {
+          this.cooperateListData = []
+          return this.$u.toast(res.msg)
+        }
         res.data.forEach(item => {
           item.cooperate = item.cooperate == null ? null : `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
         });
