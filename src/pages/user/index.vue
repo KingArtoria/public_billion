@@ -75,6 +75,10 @@
 						<image class="content_3_2_1_1" src="../../static/shezhi.webp" style="width:46rpx;height: 44rpx;" />
 						<view class="content_3_2_1_2">设置</view>
 					</view>
+					<view class="content_3_2_1" @click="goLeaderboard">
+						<image class="content_3_2_1_1" src="../../static/paihangb.png" style="width:46rpx;height: 44rpx;" />
+						<view class="content_3_2_1_2">排行榜</view>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -152,6 +156,11 @@ export default {
 		goEditInfo() {
 			uni.navigateTo({
 				url: '/pages/user/edit_info'
+			});
+		},
+		goLeaderboard() {
+			uni.navigateTo({
+				url: '/pages/user/leaderboard'
 			});
 		},
 	},

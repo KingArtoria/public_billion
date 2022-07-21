@@ -14,11 +14,13 @@
       <view class="taskDay_2_2">
         <view class="taskDay_2_2_1" style="margin-right:29rpx">
           <image class="taskDay_2_2_1_1" src="../static/ren.webp" />
-          <view class="taskDay_2_2_1_2">{{ item.number - item.stock_number }}人已赚</view>
+          <view class="taskDay_2_2_1_2">{{ item.number - item.stock_number > 999 ? '999+' : item.number -
+              item.stock_number
+          }}人已赚</view>
         </view>
         <view class="taskDay_2_2_1">
           <image class="taskDay_2_2_1_1" src="../static/qiandai.webp" />
-          <view class="taskDay_2_2_1_2">剩余{{ item.stock_number }}个</view>
+          <view class="taskDay_2_2_1_2">剩余{{ item.stock_number > 99 ? '999+' : item.stock_number }}个</view>
         </view>
       </view>
     </view>

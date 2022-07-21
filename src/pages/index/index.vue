@@ -10,7 +10,7 @@
 				</view>
 				<image class="content_1_1_3" src="../../static/xiaoxi.webp" @click="goNews" />
 			</view>
-			<image class="content_1_2" :src="banner" v-if="banner" />
+			<image class="content_1_2" :src="banner" v-if="banner" @click="goPromote" />
 		</view>
 		<view class="content_2">
 			<image class="content_2_1" src="../../static/ruzhuhuiyuan.webp" @click="goVip" />
@@ -110,7 +110,7 @@ export default {
 			});
 		},
 		goHall() {
-			uni.switchTab({
+			uni.navigateTo({
 				url: '/pages/hall/index'
 			});
 		},
@@ -147,6 +147,11 @@ export default {
 		confirm() {
 			uni.navigateTo({
 				url: `/pages/index/search?title=${this.search}`
+			});
+		},
+		goPromote() {
+			uni.navigateTo({
+				url: '/pages/user/promote'
 			});
 		},
 	},

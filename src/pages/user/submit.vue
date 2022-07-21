@@ -41,23 +41,25 @@
         </view>
         <view class="content_3_2" v-html="item.content" v-if="type == 'old'" />
         <view class="content_3_3" v-else>
-          <view class="content_3_3" v-for="(item, index) in newContent" :key="index">
-            <view class="content_3_3_1">
-              <view class="content_3_3_1_1">{{ index + 1 }}</view>
-              <view class="content_3_3_1_2">{{ item.text }}</view>
-            </view>
-            <view class="content_3_3_2">
-              <image class="content_3_3_2_1" v-for="(item2, index2) in item.img" :key="index2" :src="item2"
-                mode="widthFix" />
-              <u-upload :fileList="fileList[`fileList${index + 1}`]" @afterRead="afterRead" @delete="deletePic"
-                :name="'' + (index + 1)" :maxCount="1" width="348rpx" height="747rpx">
-                <view class="content_3_3_2_2">
-                  <view class="content_3_3_2_2_1">
-                    <image class="content_3_3_2_2_2" src="../../static/xiangji.png" />
+          <view class="content_3_3_1" v-for="(item2, index) in item.content" :key="index">
+            <view class="content_3_3" v-if="item2.text != ''">
+              <view class="content_3_3_1">
+                <view class="content_3_3_1_1">{{ index + 1 }}</view>
+                <view class="content_3_3_1_2">{{ item2.text }}</view>
+              </view>
+              <view class="content_3_3_2">
+                <image class="content_3_3_2_1" :src="item2.pic" mode="widthFix" v-if="item2.pic != ''" />
+                <video :src="item2.video" v-if="item2.video != ''" class="content_3_3_2_1" />
+                <u-upload :fileList="fileList[`fileList${index + 1}`]" @afterRead="afterRead" @delete="deletePic"
+                  :name="'' + (index + 1)" :maxCount="1" width="348rpx" height="747rpx">
+                  <view class="content_3_3_2_2">
+                    <view class="content_3_3_2_2_1">
+                      <image class="content_3_3_2_2_2" src="../../static/xiangji.png" />
+                    </view>
+                    <view class="content_3_3_2_2_2">选择图片</view>
                   </view>
-                  <view class="content_3_3_2_2_2">选择图片</view>
-                </view>
-              </u-upload>
+                </u-upload>
+              </view>
             </view>
           </view>
         </view>
@@ -103,7 +105,7 @@ export default {
       },
       commitJobParams: { images: [] },
       type: "",
-      newContent: [],
+      newContent: 0,
       isShow: false,
     }
   },
@@ -153,7 +155,7 @@ export default {
         });
       })
       // 此判断只对新版生效
-      if (this.type != 'old' && this.commitJobParams.images.length < this.newContent.length) {
+      if (this.type != 'old' && this.commitJobParams.images.length < this.newContent) {
         this.commitJobParams.images = []
         return this.$u.toast('请上传全部图片')
       }
@@ -171,26 +173,14 @@ export default {
   },
   onLoad() {
     this.item = uni.getStorageSync('item')
-    let newContent = []
-    let index = 0
+    // newContent复制item.content中text不为""的数量"
+    this.newContent = this.item.content.filter(item => item.text != "").length
+    console.log(this.newContent)
     // 判断item.content数据类型是否为数组或者字符串
     if (typeof (this.item.content) == 'string') {
       this.type = 'old'
       this.item.content = String(this.item.content).replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
       this.item.content = String(this.item.content).replace(/img/g, 'img style="width:90%""')
-    } else {
-      this.type = "new"
-      console.log(this.item.content)
-      this.item.content.forEach(item2 => {
-        if (String(item2[0]).substring(0, 4) == 'text') {
-          index = String(item2[0]).substring(4, 5)
-          newContent[index - 1] = { text: item2[1] }
-        } else {
-          newContent[index - 1].img = []
-          newContent[index - 1].img.push(item2[1])
-        }
-      });
-      this.newContent = newContent
     }
     this.commitJobParams.id = this.item.user_job_id
   },

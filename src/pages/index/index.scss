@@ -114,9 +114,11 @@
       }
     }
     .content_3_2 {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      // display: flex;
+      // justify-content: space-around;
+      // flex-wrap: wrap;
     }
   }
   .content_4 {

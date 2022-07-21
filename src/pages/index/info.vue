@@ -41,14 +41,14 @@
         </view>
         <view class="content_3_2" v-html="item.content" v-if="type == 'old'" />
         <view class="content_3_3" v-else>
-          <view class="content_3_3" v-for="(item, index) in newContent" :key="index">
-            <view class="content_3_3_1">
+          <view class="content_3_3" v-for="(item2, index) in item.content" :key="index">
+            <view class="content_3_3_1" v-if="item2.text != ''">
               <view class="content_3_3_1_1">{{ index + 1 }}</view>
-              <view class="content_3_3_1_2">{{ item.text }}</view>
+              <view class="content_3_3_1_2">{{ item2.text }}</view>
             </view>
             <view class="content_3_3_2">
-              <image class="content_3_3_2_1" v-for="(item2, index2) in item.img" :key="index2" :src="item2"
-                mode="widthFix" />
+              <image class="content_3_3_2_1" :src="item2.pic" mode="widthFix" v-if="item2.pic != ''" />
+              <video :src="item2.video" v-if="item2.video != ''" class="content_3_3_2_1" />
             </view>
           </view>
         </view>
@@ -75,9 +75,8 @@ import { applyJob } from '../../utils/api'
 export default {
   data() {
     return {
-      item: { content: [] },
+      item: {},
       type: "",
-      newContent: [],
       isApplyJob: false,
     }
   },
@@ -91,25 +90,11 @@ export default {
   },
   onLoad() {
     this.item = uni.getStorageSync('item')
-    let newContent = []
-    let index = 0
+    console.log(this.item)
     if (typeof (this.item.content) == 'string') {
       this.type = 'old'
       this.item.content = String(this.item.content).replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
       this.item.content = String(this.item.content).replace(/img/g, 'img style="width:90%""')
-    } else {
-      this.type = "new"
-      console.log(this.item.content)
-      this.item.content.forEach(item2 => {
-        if (String(item2[0]).substring(0, 4) == 'text') {
-          index = String(item2[0]).substring(4, 5)
-          newContent[index - 1] = { text: item2[1] }
-        } else {
-          newContent[index - 1].img = []
-          newContent[index - 1].img.push(item2[1])
-        }
-      });
-      this.newContent = newContent
     }
   },
   components: { Head }

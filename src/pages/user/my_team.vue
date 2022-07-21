@@ -5,7 +5,7 @@
     <view class="content">
       <view class="content_1">
         <view class="content_1_1">
-          <view class="content_1_1_1">{{ teamNum }}</view>
+          <view class="content_1_1_1">{{ pushNum }}</view>
           <view class="content_1_1_2">直推人数</view>
         </view>
         <view class="content_1_1">
@@ -39,7 +39,8 @@ export default {
   data() {
     return {
       teamList: [],
-      teamNum: ""
+      teamNum: "",
+      pushNum: ""
     }
   },
   methods: {
@@ -47,6 +48,7 @@ export default {
       team().then(res => {
         this.teamList = res.data.list
         this.teamNum = res.data.team_num
+        this.pushNum = res.data.push_num
       })
     },
   },

@@ -48,13 +48,18 @@ export default {
         }
         res.data.forEach(item => {
           item.cooperate = item.cooperate == null ? null : `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+          this.cooperateListData.push(item)
         });
-        this.cooperateListData = res.data
       })
     },
   },
   onShow() {
     this.typeLeft = `calc(125rpx - 62.5rpx - 19.5rpx + 125rpx*0)`
+    this.cooperateList()
+  },
+
+  onReachBottom() {
+    this.cooperateListParams.page += 1
     this.cooperateList()
   },
   components: { Task_dayVue }

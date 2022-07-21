@@ -21,6 +21,7 @@
 
 <script>
 import Head from '../../components/Head.vue'
+import { memberIndex } from '../../utils/api'
 export default {
   data() {
     return {
@@ -36,9 +37,14 @@ export default {
         }
       })
     },
+    memberIndex() {
+      memberIndex().then(res => {
+        this.uuid = res.data.member.uuid == null ? "暂无权限" : res.data.member.uuid
+      })
+    },
   },
-  onLoad(option) {
-    this.uuid = option.uuid
+  onLoad() {
+    this.memberIndex()
   },
   components: { Head }
 }

@@ -1,4 +1,5 @@
 import request from './request'
+import qs from 'qs'
 // ? 注册
 export const register = data => {
 	return request({
@@ -20,7 +21,7 @@ export const login = data => {
 	return request({
 		url: "/login/login",
 		method: "POST",
-		data
+		data,
 	})
 }
 // ? 短信登录
@@ -201,6 +202,13 @@ export const notice = () => {
 export const version = () => {
 	return request({
 		url: "/Version/version",
+		method: "POST",
+	})
+}
+// ? 排行榜
+export const ranking = () => {
+	return request({
+		url: "/member/ranking",
 		method: "POST",
 	})
 }

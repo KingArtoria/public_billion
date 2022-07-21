@@ -3,16 +3,24 @@
     <view class="content">
       <view class="content_1">
         <view class="content_1_1">资产</view>
-        <view class="content_1_2">任务总收益(元)</view>
+        <view class="content_1_2">总收益(元)</view>
         <view class="content_1_3">{{ assetsIndexData.all_profit }}</view>
         <view class="content_1_4">
           <view class="content_1_4_1">
             <view class="content_1_4_1_1">当前积分</view>
             <view class="content_1_4_1_2">{{ assetsIndexData.integral }}</view>
           </view>
-          <view class="content_1_4_1">
+          <!-- <view class="content_1_4_1">
             <view class="content_1_4_1_1">当前金币</view>
             <view class="content_1_4_1_2">{{ assetsIndexData.coin }}</view>
+          </view> -->
+          <view class="content_1_4_1">
+            <view class="content_1_4_1_1">任务总收益</view>
+            <view class="content_1_4_1_2">{{ assetsIndexData.all_balance }}</view>
+          </view>
+          <view class="content_1_4_1">
+            <view class="content_1_4_1_1">累计提现</view>
+            <view class="content_1_4_1_2">{{ assetsIndexData.all_draw }}</view>
           </view>
         </view>
         <view class="content_1_5" @click="convert">兑换</view>
@@ -37,7 +45,7 @@
           <view class="content_3_2_1" v-for="(item, index) in detailData" :key="index">
             <view class="content_3_2_1_1">
               <view class="content_3_2_1_1_1">{{ item.remark }}</view>
-              <view class="content_3_2_1_1_2" v-if="item.type == -1">+{{ item.account }}</view>
+              <view class="content_3_2_1_1_2" v-if="item.type == 1">+{{ item.account }}</view>
               <view class="content_3_2_1_1_2" v-else>-{{ item.account }}</view>
             </view>
             <view class="content_3_2_1_2">{{ item.create_time }}</view>
