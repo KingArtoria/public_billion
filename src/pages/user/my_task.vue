@@ -73,8 +73,9 @@ export default {
     userJob() {
       userJob(this.userJobParams).then(res => {
         res.data.list.forEach(item => {
-          item.cooperate = `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
-          // item.create_time改为YYYY-MM-dd格式
+          if (item.cooperate.substring(0, 4) != "http") {
+            item.cooperate = `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+          }
           item.create_time = String(item.create_time).split(" ")[0]
         });
         this.list = res.data.list

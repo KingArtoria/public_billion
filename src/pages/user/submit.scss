@@ -153,7 +153,6 @@
 
       .content_3_3_1 {
         display: flex;
-        margin-bottom: 30rpx;
 
         .content_3_3_1_1 {
           width: 30rpx;
@@ -222,6 +221,11 @@
             text-align: center;
             line-height: 1;
           }
+        }
+      }
+      .content_3_3_3 {
+        .content_3_3_3_1 {
+          font-size: 36rpx;
         }
       }
     }
@@ -300,7 +304,6 @@
     }
   }
 }
-
 .btn {
   width: 750rpx;
   height: 136rpx;
@@ -324,4 +327,20 @@
     font-weight: 500;
     color: #ffffff;
   }
+}
+.image {
+  .image_1 {
+    .image_1_1 {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.showVideo {
+  margin: auto;
 }

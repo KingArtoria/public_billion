@@ -164,6 +164,15 @@
           width: 348rpx;
           margin-bottom: 30rpx;
         }
+        .content_3_3_2_2 {
+          text-align: center;
+          line-height: 748rpx;
+          width: 348rpx;
+          text-align: center;
+          font-size: 30rpx;
+          background: #000;
+          color: #fff;
+        }
       }
     }
   }
@@ -236,4 +245,7 @@
     font-weight: 500;
     color: #ffffff;
   }
+}
+.showVideo {
+  margin: auto;
 }

@@ -47,8 +47,9 @@
               <view class="content_3_3_1_2">{{ item2.text }}</view>
             </view>
             <view class="content_3_3_2">
-              <image class="content_3_3_2_1" :src="item2.pic" mode="widthFix" v-if="item2.pic != ''" />
-              <video :src="item2.video" v-if="item2.video != ''" class="content_3_3_2_1" />
+              <image class="content_3_3_2_1" :src="item2.pic" mode="widthFix" v-if="item2.pic != ''"
+                @click="showImage(item2.pic)" />
+              <view class="content_3_3_2_2" v-if="item2.video != ''" @click="showVideo(item2.video)">点击播放视频</view>
             </view>
           </view>
         </view>
@@ -66,6 +67,16 @@
       <view class="btn_1" @click="applyJob">领取任务</view>
     </view>
     <u-modal :show="isApplyJob" title="系统提示" content='领取成功' @confirm="_pageBack" />
+    <u-overlay :show="isShowImage" @click="isShowImage = false">
+      <view class="image">
+        <view class="image_1">
+          <image class="image_1_1" :src="showPic" mode="widthFix" style="width:100%" />
+        </view>
+      </view>
+    </u-overlay>
+    <u-overlay :show="isShowVideo" @click="isShowVideo = false">
+      <video :src="videoPic" style="width:375rpx;height:50%" class="showVideo" />
+    </u-overlay>
   </view>
 </template>
 
@@ -78,6 +89,10 @@ export default {
       item: {},
       type: "",
       isApplyJob: false,
+      isShowImage: false,
+      showPic: '',
+      isShowVideo: false,
+      videoPic: ""
     }
   },
   methods: {
@@ -86,6 +101,14 @@ export default {
         if (res.code == -1) return this.$u.toast(res.msg)
         this.isApplyJob = true
       })
+    },
+    showImage(pic) {
+      this.isShowImage = true
+      this.showPic = pic
+    },
+    showVideo(pic) {
+      this.isShowVideo = true
+      this.videoPic = pic
     }
   },
   onLoad() {

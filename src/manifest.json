@@ -15,7 +15,8 @@
             "delay" : 0
         },
         "modules" : {
-            "Payment" : {}
+            "Payment" : {},
+            "VideoPlayer" : {}
         },
         /* 模块配置 */
         "distribute" : {

@@ -1,6 +1,7 @@
 <template>
   <view>
-    <view class="head">大厅</view>
+
+    <Head title="任务大厅" />
     <view class="content">
       <view class="content_1">
         <view class="content_1_1" @click="switchType(0)" :style="`color:${typeColor[0]}`">综合</view>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import Head from '../../components/Head.vue'
 import Task_dayVue from '../../components/Task_day.vue'
 import { cooperateList } from '../../utils/api'
 export default {
@@ -37,17 +39,20 @@ export default {
       this.typeColor = ['#424242', '#424242', '#424242', '#424242', '#424242', '#424242']
       this.typeColor[index] = '#FF644D'
       this.cooperateListParams.type = this.typeListData[index]
+      this.cooperateListParams.page = 1
+      this.cooperateListData = []
       this.cooperateList()
     },
     cooperateList() {
       cooperateList(this.cooperateListParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
         else if (res.code == -3) {
-          this.cooperateListData = []
           return this.$u.toast(res.msg)
         }
         res.data.forEach(item => {
-          item.cooperate = item.cooperate == null ? null : `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+          if (item.cooperate.substring(0, 4) != "http") {
+            item.cooperate = `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+          }
           this.cooperateListData.push(item)
         });
       })
@@ -62,7 +67,7 @@ export default {
     this.cooperateListParams.page += 1
     this.cooperateList()
   },
-  components: { Task_dayVue }
+  components: { Task_dayVue, Head }
 }
 </script>
 

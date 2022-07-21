@@ -48,8 +48,13 @@
                 <view class="content_3_3_1_2">{{ item2.text }}</view>
               </view>
               <view class="content_3_3_2">
-                <image class="content_3_3_2_1" :src="item2.pic" mode="widthFix" v-if="item2.pic != ''" />
-                <video :src="item2.video" v-if="item2.video != ''" class="content_3_3_2_1" />
+                <image class="content_3_3_2_1" :src="item2.pic" mode="widthFix" v-if="item2.pic != ''"
+                  @click="showImage(item2.pic)" />
+                <view
+                  style="text-align:center;line-height:748rpx;width: 348rpx;text-align:center;font-size:30rpx;background:#000;color:#fff;"
+                  v-if="item2.video != ''" @click="showVideo(item2.video)">点击播放视频
+                </view>
+                <!-- <video :src="item2.video" v-if="item2.video != ''" class="content_3_3_2_1" /> -->
                 <u-upload :fileList="fileList[`fileList${index + 1}`]" @afterRead="afterRead" @delete="deletePic"
                   :name="'' + (index + 1)" :maxCount="1" width="348rpx" height="747rpx">
                   <view class="content_3_3_2_2">
@@ -61,6 +66,10 @@
                 </u-upload>
               </view>
             </view>
+          </view>
+          <view class="content_3_3_3">
+            <view class="content_3_3_3_1" style="margin-bottom:20rpx">做单手机号</view>
+            <u-input placeholder="请输入手机号" maxlength="11" type="number" v-model="commitJobParams.voucher" />
           </view>
         </view>
       </view>
@@ -82,6 +91,16 @@
       <view class="btn_1" @click="commitJob">提交任务</view>
     </view>
     <u-modal :show="isShow" title="系统提示" content='提交成功,请等待审核' @confirm="_pageBack" />
+    <u-overlay :show="isShowImage" @click="isShowImage = false">
+      <view class="image">
+        <view class="image_1">
+          <image class="image_1_1" :src="showPic" mode="widthFix" style="width:100%" />
+        </view>
+      </view>
+    </u-overlay>
+    <u-overlay :show="isShowVideo" @click="isShowVideo = false">
+      <video :src="videoPic" style="width:375rpx;height:50%" class="showVideo" />
+    </u-overlay>
   </view>
 </template>
 
@@ -102,11 +121,26 @@ export default {
         fileList7: [],
         fileList8: [],
         fileList9: [],
+        fileList10: [],
+        fileList11: [],
+        fileList12: [],
+        fileList13: [],
+        fileList14: [],
+        fileList15: [],
+        fileList16: [],
+        fileList17: [],
+        fileList18: [],
+        fileList19: [],
+        fileList20: [],
       },
       commitJobParams: { images: [] },
       type: "",
       newContent: 0,
       isShow: false,
+      isShowImage: false,
+      showPic: '',
+      isShowVideo: false,
+      videoPic: ""
     }
   },
   methods: {
@@ -170,17 +204,26 @@ export default {
         this.commitJobParams.images = []
       })
     },
+    showImage(pic) {
+      this.isShowImage = true
+      this.showPic = pic
+    },
+    showVideo(pic) {
+      this.isShowVideo = true
+      this.videoPic = pic
+    }
   },
   onLoad() {
     this.item = uni.getStorageSync('item')
-    // newContent复制item.content中text不为""的数量"
-    this.newContent = this.item.content.filter(item => item.text != "").length
     console.log(this.newContent)
     // 判断item.content数据类型是否为数组或者字符串
     if (typeof (this.item.content) == 'string') {
       this.type = 'old'
       this.item.content = String(this.item.content).replace(/src=\"/g, 'src=\"http://zxyj.xzxiaocaihua.cn')
       this.item.content = String(this.item.content).replace(/img/g, 'img style="width:90%""')
+    } else {
+      // newContent复制item.content中text不为""的数量"
+      this.newContent = this.item.content.filter(item => item.text != "").length
     }
     this.commitJobParams.id = this.item.user_job_id
   },
