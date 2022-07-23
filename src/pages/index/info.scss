@@ -2,6 +2,8 @@
   background: #f2f2f2;
   padding-top: calc(195rpx + 16rpx);
   padding-bottom: 185rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
   .content_1 {
     display: flex;
     justify-content: space-between;
@@ -149,7 +151,7 @@
         }
         .content_3_3_1_2 {
           width: 670rpx;
-          font-size: 24rpx;
+          font-size: 34rpx;
           font-family: PingFang SC;
           font-weight: 500;
           color: #1a1a1a;
@@ -247,5 +249,8 @@
   }
 }
 .showVideo {
+  margin: auto;
+}
+.image_1_1 {
   margin: auto;
 }

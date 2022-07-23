@@ -24,7 +24,9 @@ export default {
       list(this.listParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)
         res.data.forEach(item => {
-          item.cooperate = item.cooperate == null ? null : `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+          if (item.cooperate.substring(0, 4) != "http") {
+            item.cooperate = `http://zxyj.xzxiaocaihua.cn${item.cooperate}`
+          }
           this.listData.push(item)
         });
       })

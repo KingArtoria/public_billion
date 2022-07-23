@@ -11,7 +11,7 @@
       <view class="content_2">
         <view class="content_2_1">
           <view class="content_2_1_1" />
-          <view class="content_2_1_2">提现方式</view>
+          <view class="content_2_1_2">提现方式(200以内微信提现，200以上支付宝)</view>
         </view>
         <view class="content_2_2">
           <view :class="selectPayData[0] ? 'content_2_2_2' : 'content_2_2_1'" v-show="isZFB"

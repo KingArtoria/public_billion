@@ -1,5 +1,7 @@
 const request = (config) => {
-  console.log(uni.getStorageSync('app_token'))
+  console.log('*******************************************************************')
+  console.log(config)
+  console.log('*******************************************************************')
   config.url = 'https://zxyj.xzxiaocaihua.cn/api' + config.url;
   config.header = { 'Content-Type': 'application/x-www-form-urlencoded' }
   if (uni.getStorageSync('app_token')) {
@@ -29,6 +31,9 @@ const request = (config) => {
             url: '/pages/login/index'
           });
         }
+        console.log('-------------------------------------------------------------------')
+        console.log(response)
+        console.log('-------------------------------------------------------------------')
         resolve(response);
       }
     }).catch(error => reject(error))

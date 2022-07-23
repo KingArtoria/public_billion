@@ -1,6 +1,11 @@
 <template>
   <view>
-    <view class="head">
+
+    <Head title="日常任务" />
+    <view class="content">
+      <image class="content_1" src="../../static/jqqd.webp" />
+    </view>
+    <!-- <view class="head">
       <view class="head_1">任务中心</view>
       <view class="head_2">
         <view class="head_2_1">
@@ -128,16 +133,18 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
   </view>
 </template>
 
 <script>
+import Head from '../../components/Head.vue'
 export default {
-
+  components: { Head }
 }
 </script>
 
 <style lang="scss" scoped>
-@import './index.scss';
+// @import './index.scss';
+@import '../hall/mall.scss';
 </style>

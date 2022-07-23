@@ -4,7 +4,7 @@
       <view class="head_1">
         <image class="head_1_1" src="../../static/fanhui_w.webp" @click="goBack" />
       </view>
-      <view class="head_2">收益总榜</view>
+      <view class="head_2">周收益总榜</view>
       <view class="head_3" />
     </view>
     <view class="content">

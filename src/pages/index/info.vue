@@ -44,7 +44,8 @@
           <view class="content_3_3" v-for="(item2, index) in item.content" :key="index">
             <view class="content_3_3_1" v-if="item2.text != ''">
               <view class="content_3_3_1_1">{{ index + 1 }}</view>
-              <view class="content_3_3_1_2">{{ item2.text }}</view>
+              <view class="content_3_3_1_2" :style="`color:${item2.isColor ? 'red' : '#1a1a1a'}`">{{ item2.text }}
+              </view>
             </view>
             <view class="content_3_3_2">
               <image class="content_3_3_2_1" :src="item2.pic" mode="widthFix" v-if="item2.pic != ''"
@@ -54,7 +55,7 @@
           </view>
         </view>
       </view>
-      <view class="content_4">
+      <view class="content_4" v-if="item.share_url">
         <view class="content_4_1">
           <view class="content_4_1_1" />
           <view class="content_4_1_2">做单公码</view>
@@ -68,11 +69,7 @@
     </view>
     <u-modal :show="isApplyJob" title="系统提示" content='领取成功' @confirm="_pageBack" />
     <u-overlay :show="isShowImage" @click="isShowImage = false">
-      <view class="image">
-        <view class="image_1">
-          <image class="image_1_1" :src="showPic" mode="widthFix" style="width:100%" />
-        </view>
-      </view>
+      <image class="image_1_1" :src="showPic" mode="widthFix" style="width:100%" />
     </u-overlay>
     <u-overlay :show="isShowVideo" @click="isShowVideo = false">
       <video :src="videoPic" style="width:375rpx;height:50%" class="showVideo" />
@@ -113,6 +110,10 @@ export default {
   },
   onLoad() {
     this.item = uni.getStorageSync('item')
+    if (this.item.check != null)
+      this.item.check.forEach(element => {
+        this.item.content[element - 1].isColor = true
+      });
     console.log(this.item)
     if (typeof (this.item.content) == 'string') {
       this.type = 'old'

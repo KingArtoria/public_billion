@@ -5,7 +5,7 @@
     <view class="content">
       <view class="content_1">
         <view class="content_1_1">
-          <view class="content_1_1_1" />
+          <image class="content_1_1_1" src="../../static/erwm.png" />
         </view>
         <view class="content_1_2" @click="copyUUID">
           <view class="content_1_2_1">邀请码：{{ uuid }}</view>

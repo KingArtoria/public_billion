@@ -3,7 +3,7 @@
     "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
   },
   "pages": [
-    { "path": "pages/index/index", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/index", "style": { "navigationStyle": "custom", "onReachBottomDistance": 300 } },
     { "path": "pages/hall/index", "style": { "navigationStyle": "custom" } },
     { "path": "pages/assets/index", "style": { "navigationStyle": "custom" } },
     { "path": "pages/task/index", "style": { "navigationStyle": "custom" } },
@@ -41,7 +41,7 @@
       { "pagePath": "pages/index/index", "text": "首页", "iconPath": "/static/shouye-a.webp", "selectedIconPath": "/static/shouye-ll.webp" },
       { "pagePath": "pages/hall/mall", "text": "商城", "iconPath": "/static/shangcheng_a.png", "selectedIconPath": "/static/shangcheng_l.png" },
       { "pagePath": "pages/assets/index", "text": "资产", "iconPath": "/static/zichan-a.webp", "selectedIconPath": "/static/zichan-l.webp" },
-      // { "pagePath": "pages/task/index", "text": "任务", "iconPath": "/static/renwu-a.webp", "selectedIconPath": "/static/renwu_l.webp" },
+      { "pagePath": "pages/task/index", "text": "日常", "iconPath": "/static/renwu-a.webp", "selectedIconPath": "/static/renwu_l.webp" },
       { "pagePath": "pages/user/index", "text": "我的", "iconPath": "/static/wode_a.webp", "selectedIconPath": "/static/wode-l.webp" }
     ]
   },

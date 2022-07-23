@@ -116,9 +116,7 @@
     .content_3_2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      // display: flex;
-      // justify-content: space-around;
-      // flex-wrap: wrap;
+      justify-items: center;
     }
   }
   .content_4 {
@@ -212,6 +210,69 @@
         font-weight: 500;
         color: #ffffff;
       }
+    }
+  }
+  .notice {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 568rpx;
+    height: 855rpx;
+    background: url('../../static/hdtz.png') no-repeat;
+    background-size: 100%;
+    padding: 0 50rpx;
+    box-sizing: border-box;
+    .notice_1 {
+      text-align: center;
+      margin-bottom: 47rpx;
+      margin-top: 253rpx;
+      font-size: 40rpx;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: #000000;
+      line-height: 1;
+    }
+    .notice_2 {
+      font-size: 27rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #3c3c3c;
+      line-height: 38rpx;
+      margin-bottom: 30rpx;
+    }
+    .notice_3 {
+      display: flex;
+      align-items: center;
+      .notice_3_1 {
+        font-size: 27rpx;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #3c3c3c;
+      }
+      .notice_3_2 {
+        font-size: 27rpx;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ff0000;
+      }
+    }
+    .notice_4 {
+      width: 411rpx;
+      height: 90rpx;
+      background: #fc4336;
+      box-shadow: 0px 0px 21rpx 0px rgba(238, 58, 46, 0.49);
+      border-radius: 45rpx;
+      text-align: center;
+      line-height: 90rpx;
+      margin: 0 auto;
+      margin-top: 54rpx;
+      font-size: 32rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
     }
   }
 }

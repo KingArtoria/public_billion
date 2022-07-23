@@ -71,6 +71,7 @@ export default {
       assetsIndex().then(res => {
         this.assetsIndexData = res.data
         this.detailData = res.data.list.bill_list
+        this.$forceUpdate()
       })
     },
     switchType(index) {

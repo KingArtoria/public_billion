@@ -33,7 +33,7 @@
           <view class="content_2_1_2">做单价格</view>
         </view>
       </view>
-      <view class="content_3">
+      <!-- <view class="content_3">
         <view class="content_3_1">
           <view class="content_3_1_1" />
           <view class="content_3_1_2">任务步骤</view>
@@ -54,7 +54,6 @@
                   style="text-align:center;line-height:748rpx;width: 348rpx;text-align:center;font-size:30rpx;background:#000;color:#fff;"
                   v-if="item2.video != ''" @click="showVideo(item2.video)">点击播放视频
                 </view>
-                <!-- <video :src="item2.video" v-if="item2.video != ''" class="content_3_3_2_1" /> -->
                 <u-upload :fileList="fileList[`fileList${index + 1}`]" @afterRead="afterRead" @delete="deletePic"
                   :name="'' + (index + 1)" :maxCount="1" width="348rpx" height="747rpx">
                   <view class="content_3_3_2_2">
@@ -72,17 +71,18 @@
             <u-input placeholder="请输入手机号" maxlength="11" type="number" v-model="commitJobParams.voucher" />
           </view>
         </view>
-      </view>
-      <view v-if="type != 'old'" class="content_3 common">
+      </view> -->
+      <!-- <view v-if="type != 'old'" class="content_3 common">
         <view class="content_3_1">
           <view class="content_3_1_1" />
           <view class="content_3_1_2">做单公码</view>
         </view>
         <image :src="item.share_url" class="common-img"></image>
-      </view>
-      <view class="content_4" v-if="type == 'old'">
-        <view class="content_4_1" style="font-size:20rpx">提交数据</view>
-        <u--input placeholder="选填,请输入凭证" border="surround" v-model="commitJobParams.voucher" fontSize="20rpx" />
+      </view> -->
+      <view class="content_4">
+        <view class="content_4_1" style="font-size:20rpx">提交做单手机号</view>
+        <u--input placeholder="请输入手机号" border="surround" v-model="commitJobParams.voucher" fontSize="20rpx" />
+        <view class="content_4_1" style="font-size:20rpx">提交做单截图</view>
         <u-upload :fileList="fileList.fileList1" @afterRead="afterRead" @delete="deletePic" name="1" multiple
           :maxCount="9" style="margin-top:20rpx" width="120rpx" height="120rpx" />
       </view>
@@ -188,15 +188,6 @@ export default {
           this.commitJobParams.images.push(`/${item.url}`)
         });
       })
-      // 此判断只对新版生效
-      if (this.type != 'old' && this.commitJobParams.images.length < this.newContent) {
-        this.commitJobParams.images = []
-        return this.$u.toast('请上传全部图片')
-      }
-      // 此判断只对旧版生效
-      if (this.type == 'old' && this.commitJobParams.images.length < 1) {
-        return this.$u.toast('请上传数据图')
-      }
       this.commitJobParams.images = this.commitJobParams.images.join(',')
       commitJob(this.commitJobParams).then(res => {
         if (res.code == -1) return this.$u.toast(res.msg)

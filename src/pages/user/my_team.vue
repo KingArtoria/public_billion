@@ -24,7 +24,12 @@
               <view class="content_2_2_1_1_1">{{ item.nick_name }}</view>
               <view class="content_2_2_1_1_1">{{ item.phone }}</view>
             </view>
-            <view class="content_2_2_1_2">{{ item.create_time }}</view>
+            <view class="content_2_2_1_2">
+              <view class="content_2_2_1_2_1">{{ item.create_time }}</view>
+              <view class="content_2_2_1_2_2">总数：{{ item.team }}</view>
+              <view class="content_2_2_1_2_2" style="color:#46E1CE">钻石：{{ item.diamonds }}</view>
+              <view class="content_2_2_1_2_2" style="color:#D3D300">黄金：{{ item.gold }}</view>
+            </view>
           </view>
         </view>
       </view>

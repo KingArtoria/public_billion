@@ -58,6 +58,18 @@
 				</view>
 			</view>
 		</u-overlay>
+		<u-overlay :show="noticeShow">
+			<view class="notice">
+				<view class="notice_1">正式版上线活动通知</view>
+				<view class="notice_2">1.做任务赚20元系统自动生成推广二维码，满5元可提现，团队奖励1元/人，以此类推，团队奖励满100元可提现</view>
+				<view class="notice_2">2.充值100元系统自动生成二维码，团队奖励5元/人，1个月内完成100元任务全额退还，团队奖励满5元可提现</view>
+				<view class="notice_3">
+					<view class="notice_3_1">3.活动截止日期</view>
+					<view class="notice_3_2">2022年8月21日</view>
+				</view>
+				<view class="notice_4" @click="noticeShow = false">知道啦</view>
+			</view>
+		</u-overlay>
 	</view>
 </template>
 
@@ -77,7 +89,8 @@ export default {
 			text: "",
 			lv: "",
 			downloadurl: "",
-			search: ""
+			search: "",
+			noticeShow: false,
 		}
 	},
 	onLoad() { },
@@ -133,14 +146,15 @@ export default {
 				this.text = res.data.content
 				this.lv = res.data.newversion
 				this.downloadurl = res.data.downloadurl
-				this.lv = this.lv.replace(/\./g, "")
-				this._version = this._version.replace(/\./g, "")
-				if (this._version < this.lv) {
+				if (this._version != this.lv) {
 					this.show = true
+				} else if (new Date().getTime() <= 1661011200 * 1000) {
+					this.noticeShow = true
 				}
 			})
 		},
 		newApp() {
+			this.$u.toast("正在下载...")
 			uni.downloadFile({
 				url: this.downloadurl,
 				success: res => {
@@ -160,12 +174,12 @@ export default {
 		},
 	},
 	onShow() {
-		this.version()
 		this.bannerList()
 		this.hotList()
 		this.list()
 	},
 	onLoad() {
+		this.version()
 	},
 	onReachBottom() {
 		this.listParams.page += 1
