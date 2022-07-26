@@ -42,13 +42,13 @@
           <view class="content_4_1_1" />
           <view class="content_4_1_2">提现说明</view>
         </view>
-        <view class="content_4_2">1、提现金额会在1-3个工作日到账。</view>
-        <view class="content_4_2">2、提现最低金额为10元</view>
+        <view class="content_4_2">1、提现金额会在1个工作日到账。</view>
+        <view class="content_4_2">2、提现最低金额为5元</view>
         <view class="content_4_2">3、提现需要收取1%的手续费</view>
       </view>
     </view>
     <view class="btn">
-      <view class="btn_1" @click="draw">立即体现</view>
+      <view class="btn_1" @click="draw">立即提现</view>
     </view>
     <u-modal :show="!isZFB && !isWX" title="提示" content='请先去绑定提现支付宝账户或微信账户' showCancelButton @confirm="confirm"
       @close="cancel_close" @cancel="cancel_close" />

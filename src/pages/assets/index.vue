@@ -44,7 +44,7 @@
         <view class="content_3_2">
           <view class="content_3_2_1" v-for="(item, index) in detailData" :key="index">
             <view class="content_3_2_1_1">
-              <view class="content_3_2_1_1_1">{{ item.remark }}</view>
+              <view class="content_3_2_1_1_1">{{ item.bill_type }}</view>
               <view class="content_3_2_1_1_2" v-if="item.type == 1">+{{ item.account }}</view>
               <view class="content_3_2_1_1_2" v-else>-{{ item.account }}</view>
             </view>

@@ -61,12 +61,7 @@
 		<u-overlay :show="noticeShow">
 			<view class="notice">
 				<view class="notice_1">正式版上线活动通知</view>
-				<view class="notice_2">1.做任务赚20元系统自动生成推广二维码，满5元可提现，团队奖励1元/人，以此类推，团队奖励满100元可提现</view>
-				<view class="notice_2">2.充值100元系统自动生成二维码，团队奖励5元/人，1个月内完成100元任务全额退还，团队奖励满5元可提现</view>
-				<view class="notice_3">
-					<view class="notice_3_1">3.活动截止日期</view>
-					<view class="notice_3_2">2022年8月21日</view>
-				</view>
+				<view class="notice_2" v-for="(item, index) in tip" :key="index">{{ index + 1 }}.{{ item }}</view>
 				<view class="notice_4" @click="noticeShow = false">知道啦</view>
 			</view>
 		</u-overlay>
@@ -76,7 +71,7 @@
 <script>
 import TaskHot from '../../components/Task_hot.vue'
 import TaskDay from '../../components/Task_day.vue'
-import { bannerList, hotList, list, version } from '../../utils/api'
+import { bannerList, get_tip, hotList, list, version } from '../../utils/api'
 export default {
 	data() {
 		return {
@@ -91,6 +86,7 @@ export default {
 			downloadurl: "",
 			search: "",
 			noticeShow: false,
+			tip: [],
 		}
 	},
 	onLoad() { },
@@ -148,8 +144,12 @@ export default {
 				this.downloadurl = res.data.downloadurl
 				if (this._version != this.lv) {
 					this.show = true
+					uni.hideTabBar()
 				} else if (new Date().getTime() <= 1661011200 * 1000) {
-					this.noticeShow = true
+					get_tip().then(res => {
+						this.tip = res.data
+						this.noticeShow = true
+					})
 				}
 			})
 		},

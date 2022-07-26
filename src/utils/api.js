@@ -212,3 +212,24 @@ export const ranking = () => {
 		method: "POST",
 	})
 }
+// ? 弹框内容
+export const get_tip = () => {
+	return request({
+		url: "/Version/get_tip",
+		method: "POST",
+	})
+}
+// ? 关于我们
+export const get_wenan = () => {
+	return request({
+		url: "/Version/get_wenan",
+		method: "POST",
+	})
+}
+// ? 会员价格
+export const order_price = () => {
+	return request({
+		url: "/Wxpay/order_price",
+		method: "POST",
+	})
+}

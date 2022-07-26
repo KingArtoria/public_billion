@@ -20,7 +20,7 @@
 				<view class="content_1_2">
 					<view class="content_1_2_1">
 						<view class="content_1_2_1_1">钻石会员</view>
-						<view class="content_1_2_1_2">￥100.00</view>
+						<view class="content_1_2_1_2">￥{{ price }}</view>
 						<view class="content_1_2_1_3">永久</view>
 					</view>
 				</view>
@@ -29,8 +29,8 @@
 				<view class="content_2_1">保证金规则</view>
 				<view class="content_2_2">1、不建议充值系统服务费获得推广资格</view>
 				<view class="content_2_2">2、建议以做任务奖励方式获得推广资格</view>
-				<view class="content_2_2">3、完全遵循资源原则充值系统服务费</view>
-				<view class="content_2_2">4、一个月内完成任务奖励100元全额退还</view>
+				<view class="content_2_2">3、完全遵循自愿原则充值系统服务费</view>
+				<view class="content_2_2">4、V7完成任务全额退还</view>
 			</view>
 		</view>
 		<view class="btn">
@@ -42,12 +42,14 @@
 
 <script>
 import {
+	order_price,
 	wxpay
 } from '../../utils/api.js'
 export default {
 	data() {
 		return {
-			show: false
+			show: false,
+			price: 0,
 		}
 	},
 	methods: {
@@ -75,7 +77,15 @@ export default {
 		back() {
 			uni.navigateBack()
 		},
-	}
+		order_price() {
+			order_price().then(res => {
+				this.price = res.data
+			})
+		},
+	},
+	onLoad() {
+		this.order_price()
+	},
 }
 </script>
 
