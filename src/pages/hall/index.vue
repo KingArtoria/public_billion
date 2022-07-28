@@ -8,7 +8,7 @@
         <view class="content_1_1" @click="switchType(1)" :style="`color:${typeColor[1]}`">新手</view>
         <view class="content_1_1" @click="switchType(2)" :style="`color:${typeColor[2]}`">最新</view>
         <view class="content_1_1" @click="switchType(3)" :style="`color:${typeColor[3]}`">高价</view>
-        <view class="content_1_1" @click="switchType(4)" :style="`color:${typeColor[4]}`">简单</view>
+        <view class="content_1_1" @click="switchType(4)" :style="`color:${typeColor[4]}`">信用卡</view>
         <view class="content_1_1" @click="switchType(5)" :style="`color:${typeColor[5]}`">热门</view>
         <view class="content_1_2" :style="`left:${typeLeft}`" />
       </view>

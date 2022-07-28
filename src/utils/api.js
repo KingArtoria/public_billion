@@ -233,3 +233,18 @@ export const order_price = () => {
 		method: "POST",
 	})
 }
+// ? 生成二维码
+export const getCodePic = (data) => {
+	return request({
+		url: "/Version/get_code_pic",
+		method: "POST",
+		data
+	})
+}
+// ? 提现记录
+export const drawRecord = () => {
+	return request({
+		url: "/assets/draw_record",
+		method: "POST"
+	})
+}

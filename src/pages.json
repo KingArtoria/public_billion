@@ -31,7 +31,8 @@
     { "path": "pages/index/search", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/protocol", "style": { "navigationStyle": "custom" } },
     { "path": "pages/hall/mall", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/leaderboard", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/leaderboard", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/record", "style": { "navigationStyle": "custom" } }
   ],
   "tabBar": {
     "color": "#B0ADAD",

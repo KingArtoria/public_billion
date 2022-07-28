@@ -71,13 +71,17 @@
 						<image class="content_3_2_1_1" src="../../static/yijfk.webp" style="width:51rpx;height: 46rpx;" />
 						<view class="content_3_2_1_2">问题反馈</view>
 					</view>
-					<view class="content_3_2_1" @click="goSetting">
-						<image class="content_3_2_1_1" src="../../static/shezhi.webp" style="width:46rpx;height: 44rpx;" />
-						<view class="content_3_2_1_2">设置</view>
-					</view>
 					<view class="content_3_2_1" @click="goLeaderboard">
 						<image class="content_3_2_1_1" src="../../static/paihangb.png" style="width:46rpx;height: 44rpx;" />
 						<view class="content_3_2_1_2">排行榜</view>
+					</view>
+					<view class="content_3_2_1" @click="goRecord">
+						<image class="content_3_2_1_1" src="../../static/tixianjl.webp" style="width:46rpx;height: 44rpx;" />
+						<view class="content_3_2_1_2">提现记录</view>
+					</view>
+					<view class="content_3_2_1" @click="goSetting">
+						<image class="content_3_2_1_1" src="../../static/shezhi.webp" style="width:46rpx;height: 44rpx;" />
+						<view class="content_3_2_1_2">设置</view>
 					</view>
 				</view>
 			</view>
@@ -161,6 +165,11 @@ export default {
 		goLeaderboard() {
 			uni.navigateTo({
 				url: '/pages/user/leaderboard'
+			});
+		},
+		goRecord() {
+			uni.navigateTo({
+				url: '/pages/user/record'
 			});
 		},
 	},
