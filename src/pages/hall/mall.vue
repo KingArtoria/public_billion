@@ -11,6 +11,7 @@
 <script>
 import Head from '../../components/Head.vue'
 export default {
+  // 222
   components: { Head }
 }
 </script>
