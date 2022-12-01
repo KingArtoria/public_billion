@@ -1,6 +1,5 @@
 <template>
   <view>
-
     <Head title="余额提现" />
     <view class="content">
       <view class="content_1">
@@ -11,16 +10,14 @@
       <view class="content_2">
         <view class="content_2_1">
           <view class="content_2_1_1" />
-          <view class="content_2_1_2">提现方式(200以内微信提现，200以上支付宝)</view>
+          <view class="content_2_1_2">提现方式</view>
         </view>
         <view class="content_2_2">
-          <view :class="selectPayData[0] ? 'content_2_2_2' : 'content_2_2_1'" v-show="isZFB"
-            @click="selectPayData = [true, false]">
+          <view :class="selectPayData[0] ? 'content_2_2_2' : 'content_2_2_1'" v-show="isZFB" @click="selectPayData = [true, false]">
             <image class="content_2_2_1_1" src="../../static/zhidfubao.webp" />
             <view class="content_2_2_1_2">支付宝</view>
           </view>
-          <view :class="selectPayData[1] ? 'content_2_2_2' : 'content_2_2_1'" v-show="isWX"
-            @click="selectPayData = [false, true]">
+          <view :class="selectPayData[1] ? 'content_2_2_2' : 'content_2_2_1'" @click="selectPayData = [false, true]">
             <image class="content_2_2_1_1" src="../../static/weixin.webp" />
             <view class="content_2_2_1_2">微信</view>
           </view>
@@ -50,15 +47,14 @@
     <view class="btn">
       <view class="btn_1" @click="draw">立即提现</view>
     </view>
-    <u-modal :show="!isZFB && !isWX" title="提示" content='请先去绑定提现支付宝账户或微信账户' showCancelButton @confirm="confirm"
-      @close="cancel_close" @cancel="cancel_close" />
-    <u-modal :show="isDrawShow" title="系统提示" content='提现成功,金额24小时内到账' @confirm="_pageBack" />
+    <u-modal :show="!isZFB && !isWX" title="提示" content="请先去绑定提现支付宝账户或微信账户" showCancelButton @confirm="confirm" @close="cancel_close" @cancel="cancel_close" />
+    <u-modal :show="isDrawShow" title="系统提示" content="提现成功,金额24小时内到账" @confirm="_pageBack" />
   </view>
 </template>
 
 <script>
-import Head from '../../components/Head.vue'
-import { draw, memberIndex } from '../../utils/api'
+import Head from '../../components/Head.vue';
+import { draw, memberIndex, wxOpenid } from '../../utils/api';
 export default {
   data() {
     return {
@@ -66,53 +62,75 @@ export default {
       userInfo: {},
       isZFB: true,
       isWX: true,
-      text: "",
+      text: '',
       selectPayData: [true, false],
       drawParams: {},
-      isDrawShow: false
-    }
+      isDrawShow: false,
+    };
   },
   methods: {
     memberIndex() {
       memberIndex().then(res => {
-        if (res.code == -1) return this.$u.toast(res.msg)
-        this.userInfo = res.data.member
-        if (this.userInfo.ali_image != '') this.isZFB = true
-        else this.isZFB = false
-        if (this.userInfo.wx_image != '') this.isWX = true
-        else this.isWX = false
+        if (res.code == -1) return this.$u.toast(res.msg);
+        this.userInfo = res.data.member;
+        if (this.userInfo.ali_image != '') this.isZFB = true;
+        else this.isZFB = false;
+        if (this.userInfo.wx_image != '') this.isWX = true;
+        else this.isWX = false;
         if (this.isZFB) {
-          this.text = "支付宝账号"
+          this.text = '支付宝账号';
         } else if (this.isWX) {
-          this.text = "微信账号"
+          this.text = '微信账号';
         }
-      })
+      });
     },
     confirm() {
       uni.navigateTo({
-        url: '/pages/user/edit_info'
+        url: '/pages/user/edit_info',
       });
     },
     cancel_close() {
       uni.navigateBack();
     },
     draw() {
-      this.drawParams.type = this.selectPayData[0] ? 2 : 3
-      draw(this.drawParams).then(res => {
-        if (res.code == -1) return this.$u.toast(res.msg)
-        this.isDrawShow = true
-        this.price -= this.drawParams.account
-      })
+      this.drawParams.type = this.selectPayData[0] ? 2 : 3;
+      if (this.drawParams.type == 2) {
+        draw(this.drawParams).then(res => {
+          if (res.code == -1) return this.$u.toast(res.msg);
+          this.isDrawShow = true;
+          this.price -= this.drawParams.account;
+        });
+      } else {
+        uni.login({
+          provider: 'weixin',
+          success: loginRes => {
+            console.log('接口成功', loginRes);
+            wxOpenid({ openid: loginRes.authResult.openid }).then(wxRes => {
+              console.log(wxRes, 'wxRes');
+              if (wxRes.code == -1) return this.$u.toast(wxRes.msg);
+              draw(this.drawParams).then(res => {
+                console.log(res, 'res');
+                if (res.code == -1) return this.$u.toast(res.msg);
+                this.isDrawShow = true;
+                this.price -= this.drawParams.account;
+              });
+            });
+          },
+          complete: completeRes => {
+            console.log(completeRes, '接口结束');
+          },
+        });
+      }
     },
   },
   onLoad(option) {
-    this.price = option.price
+    this.price = option.price;
   },
   onShow() {
-    this.memberIndex()
+    this.memberIndex();
   },
   components: { Head },
-}
+};
 </script>
 <style lang="scss" scoped>
 @import './withdraw.scss';

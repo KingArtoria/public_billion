@@ -2,7 +2,7 @@
 import Vue from 'vue'
 export default {
 	onLaunch: function () {
-		Vue.prototype._version = "2.4.0"
+		Vue.prototype._version = "2.7.1"
 	},
 }
 </script>

@@ -1,12 +1,120 @@
 .content {
+  background: url('../../static/bg-shy.webp') no-repeat;
+  background-size: 100%;
+  padding-top: 94rpx;
+  padding-bottom: 6rpx;
   .content_1 {
-    width: 445rpx;
-    height: 340rpx;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-left: 50rpx;
+    position: relative;
+    width: 250rpx;
+    margin-bottom: 14rpx;
+    .content_1_1 {
+      width: 67rpx;
+      height: 68rpx;
+      position: absolute;
+      left: -24rpx;
+    }
+    .content_1_2 {
+      width: 250rpx;
+      height: 59rpx;
+      background: rgba(0, 0, 0, 0.36);
+      border-radius: 5rpx;
+      padding-left: 68rpx;
+      line-height: 59rpx;
+      font-size: 30rpx;
+      font-family: PingFang SC;
+      font-weight: 800;
+      color: #fffb9a;
+      text-shadow: 0px 4rpx 7rpx rgba(0, 0, 0, 0.94);
+    }
+    .content_1_3 {
+      width: 87rpx;
+      height: 64rpx;
+      position: absolute;
+      right: -29rpx;
+    }
+  }
+  .content_2 {
+    width: 700rpx;
+    height: 166rpx;
+    border-radius: 5rpx;
+    margin: 0 auto;
+    margin-top: 14rpx;
+    margin-bottom: 10rpx;
+    background: #fff;
+    text-align: center;
+    line-height: 166rpx;
+    font-size: 40rpx;
+  }
+  .content_3 {
+    width: 645rpx;
+    height: 230rpx;
+    line-height: 230rpx;
+    text-align: center;
+    font-size: 102rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #6a2c00;
+    -webkit-text-stroke: 4rpx #ffffff;
+    text-stroke: 4rpx #ffffff;
+    background: url('../../static/dtbanner-1.webp') no-repeat;
+    background-size: 100%;
+    margin: 0 auto;
+  }
+  .content_4 {
+    background: url('../../static/wenti-tc.webp') no-repeat;
+    background-size: 100%;
+    width: 661rpx;
+    height: 676rpx;
+    margin: 0 auto;
+    .content_4_1 {
+      font-size: 56rpx;
+      font-family: PingFang SC;
+      font-weight: 800;
+      color: #fa1800;
+      line-height: 1;
+      text-align: center;
+      padding-top: 185rpx;
+      margin-bottom: 26rpx;
+    }
+    .content_4_2 {
+      margin: 0 auto;
+      margin-bottom: 30rpx;
+      background: url('../../static/timub.webp') no-repeat;
+      background-size: 100%;
+      text-align: center;
+      line-height: 96rpx;
+      width: 466rpx;
+      font-size: 48rpx;
+      font-family: PingFang SC;
+      font-weight: 800;
+      color: #853700;
+      position: relative;
+      .content_4_2_2 {
+        width: 39rpx;
+        height: 52rpx;
+        position: absolute;
+        right: 56rpx;
+        top: 23rpx;
+      }
+      .content_4_2_3 {
+        position: absolute;
+        right: 56rpx;
+        top: 23rpx;
+        width: 51rpx;
+        height: 44rpx;
+      }
+    }
+  }
+  .content_5 {
+    width: 700rpx;
+    margin: 0 auto;
+    margin-top: 6rpx;
+    background: #fff;
+    text-align: center;
+    line-height: 250rpx;
+    font-size: 40rpx;
   }
 }

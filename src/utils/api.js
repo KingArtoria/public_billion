@@ -248,3 +248,95 @@ export const drawRecord = () => {
 		method: "POST"
 	})
 }
+// ? 我的钱包
+export const users_wallet = () => {
+	return request({
+		url: "/Job/users_wallet",
+		method: "POST"
+	})
+}
+// ? 商家入驻
+export const business = () => {
+	return request({
+		url: "/job/business",
+		method: "POST"
+	})
+}
+// ? 我的悬赏
+export const users_release = () => {
+	return request({
+		url: "/Job/users_release",
+		method: "POST"
+	})
+}
+// ? 创建悬赏
+export const release_job = data => {
+	return request({
+		url: "/Job/release_job",
+		method: "POST",
+		data
+	})
+}
+// ? 创建悬赏
+export const get_job_category = () => {
+	return request({
+		url: "/Job/get_job_category",
+		method: "POST"
+	})
+}
+// ? 存储任务图标
+export const set_cooperate = data => {
+	return request({
+		url: "/Job/set_cooperate",
+		method: "POST",
+		data
+	})
+}
+// ? 终止任务
+export const job_end = data => {
+	return request({
+		url: "/Job/job_end",
+		method: "POST",
+		data
+	})
+}
+// ? 悬赏列表
+export const job_list = data => {
+	return request({
+		url: "/Job/job_list",
+		method: "POST",
+		data
+	})
+}
+// ? 审核列表
+export const users_examine = data => {
+	return request({
+		url: "/Job/users_examine",
+		method: "POST",
+		data
+	})
+}
+// ? 拒绝
+export const refuse = data => {
+	return request({
+		url: "/Job/refuse",
+		method: "POST",
+		data
+	})
+}
+// ? 通过
+export const agree = data => {
+	return request({
+		url: "/Job/agree",
+		method: "POST",
+		data
+	})
+}
+// ? 绑定微信
+export const wxOpenid = data => {
+	return request({
+		url: "/member/wxOpenid",
+		method: "POST",
+		data
+	})
+}
